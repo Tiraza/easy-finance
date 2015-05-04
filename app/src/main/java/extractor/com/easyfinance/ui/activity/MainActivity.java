@@ -1,7 +1,5 @@
 package extractor.com.easyfinance.ui.activity;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,9 +8,9 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
@@ -24,6 +22,9 @@ import extractor.com.myapplication.R;
 public class MainActivity extends ActionBarActivity {
     private Toolbar mToolbar;
 
+    private AccountHeader.Result headerResult;
+    private Drawer.Result drawerResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,16 +32,21 @@ public class MainActivity extends ActionBarActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.tb_main);
         mToolbar.setTitle("Easy Finance");
+        mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(mToolbar);
 
-        FragmentManager manager = getSupportFragmentManager();
-        final FragmentTransaction transaction = manager.beginTransaction();
+        headerResult = new AccountHeader()
+            .withActivity(this)
+            .withCompactStyle(true)
+            .withHeaderBackground(R.drawable.gradient_app)
+            .build();
 
-        new Drawer()
+        drawerResult = new Drawer()
             .withActivity(this)
             .withToolbar(mToolbar)
+            .withAccountHeader(headerResult)
+            .withActionBarDrawerToggleAnimated(true)
             .addDrawerItems(
-                    new ProfileDrawerItem().withName("Muryllo Tiraza"),
                     new PrimaryDrawerItem().withName("Home"),
                     new PrimaryDrawerItem().withName("Receitas"),
                     new PrimaryDrawerItem().withName("Despesas"),

@@ -16,7 +16,7 @@
         </activity>
         <activity
             android:name="extractor.com.easyfinance.ui.activity.SplashActivity"
-            android:label="@string/title_activity_splash" >
+            android:label="@string/title_activity_easy_finance" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
