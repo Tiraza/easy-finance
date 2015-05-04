@@ -1,5 +1,8 @@
 package extractor.com.easyfinance.ui.activity;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,16 +17,32 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import extractor.com.easyfinance.ui.fragment.ConfiguracoesFragment;
+import extractor.com.easyfinance.ui.fragment.DespesasFragment;
+import extractor.com.easyfinance.ui.fragment.HomeFragment;
+import extractor.com.easyfinance.ui.fragment.ReceitasFragment;
+import extractor.com.easyfinance.ui.fragment.SobreFragment;
 import extractor.com.myapplication.R;
 
 /**
  * @author Muryllo Tiraza
  */
 public class MainActivity extends ActionBarActivity {
-    private Toolbar mToolbar;
+    public Toolbar mToolbar;
+    public AccountHeader.Result headerResult;
+    public Drawer.Result drawerResult;
 
-    private AccountHeader.Result headerResult;
-    private Drawer.Result drawerResult;
+    private HomeFragment homeFragment;
+    private DespesasFragment despesasFragment;
+    private ReceitasFragment receitasFragment;
+    private ConfiguracoesFragment configuracoesFragment;
+    private SobreFragment sobreFragment;
+
+    public final int HOME_FRAGMENT = 0;
+    public final int RECEITAS_FRAGMENT = 1;
+    public final int DESPESAS_FRAGMENT = 2;
+    public final int CONFIGURACOES_FRAGMENT = 4;
+    public final int SOBRE_FRAGMENT = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +51,9 @@ public class MainActivity extends ActionBarActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.tb_main);
         mToolbar.setTitle("Easy Finance");
-        mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(mToolbar);
+
+        final FragmentManager fragmentManager = getSupportFragmentManager();
 
         headerResult = new AccountHeader()
             .withActivity(this)
@@ -57,11 +77,50 @@ public class MainActivity extends ActionBarActivity {
             .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-                    Toast.makeText(getApplicationContext(), "Menu: " + position, Toast.LENGTH_SHORT).show();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.replace(android.R.id.content, getFragment(position));
+                    transaction.commit();
+                    Toast.makeText(MainActivity.this, "Fragment: " + getFragment(position).getClass().getSimpleName(), Toast.LENGTH_SHORT).show();
                 }
             })
             .build();
     }
 
+    private Fragment getFragment(int position) {
+        switch (position){
+            case HOME_FRAGMENT:
+                if(homeFragment == null){
+                    homeFragment = new HomeFragment();
+                }
+                return homeFragment;
+
+            case RECEITAS_FRAGMENT:
+                if(receitasFragment == null){
+                    receitasFragment = new ReceitasFragment();
+                }
+                return receitasFragment;
+
+            case DESPESAS_FRAGMENT:
+                if(despesasFragment == null){
+                    despesasFragment = new DespesasFragment();
+                }
+                return despesasFragment;
+
+            case CONFIGURACOES_FRAGMENT:
+                if(configuracoesFragment == null){
+                    configuracoesFragment = new ConfiguracoesFragment();
+                }
+                return configuracoesFragment;
+
+            case SOBRE_FRAGMENT:
+                if(sobreFragment == null){
+                    sobreFragment = new SobreFragment();
+                }
+                return sobreFragment;
+
+            default:
+                return null;
+        }
+    }
 
 }

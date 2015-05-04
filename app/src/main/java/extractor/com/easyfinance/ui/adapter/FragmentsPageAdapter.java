@@ -22,6 +22,12 @@ public class FragmentsPageAdapter extends FragmentPagerAdapter {
     private ConfiguracoesFragment configuracoesFragment;
     private SobreFragment sobreFragment;
 
+    public final int HOME_FRAGMENT = 0;
+    public final int RECEITAS_FRAGMENT = 1;
+    public final int DESPESAS_FRAGMENT = 2;
+    public final int CONFIGURACOES_FRAGMENT = 4;
+    public final int SOBRE_FRAGMENT = 5;
+
     private Context context;
 
     public FragmentsPageAdapter(FragmentManager fm, Context context) {
@@ -31,12 +37,45 @@ public class FragmentsPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        switch (position){
+            case HOME_FRAGMENT:
+                if(homeFragment == null){
+                    homeFragment = new HomeFragment();
+                }
+                return homeFragment;
+
+            case RECEITAS_FRAGMENT:
+                if(receitasFragment == null){
+                    receitasFragment = new ReceitasFragment();
+                }
+                return receitasFragment;
+
+            case DESPESAS_FRAGMENT:
+                if(despesasFragment == null){
+                    despesasFragment = new DespesasFragment();
+                }
+                return despesasFragment;
+
+            case CONFIGURACOES_FRAGMENT:
+                if(configuracoesFragment == null){
+                    configuracoesFragment = new ConfiguracoesFragment();
+                }
+                return configuracoesFragment;
+
+            case SOBRE_FRAGMENT:
+                if(sobreFragment == null){
+                    sobreFragment = new SobreFragment();
+                }
+                return sobreFragment;
+
+            default:
+                return null;
+        }
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return 5;
     }
 
 

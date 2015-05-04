@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
     tools:context="extractor.com.easyfinance.ui.activity.SplashActivity"
     android:gravity="center"
     android:background="@drawable/gradient_app"
@@ -17,8 +13,7 @@
         android:src="@mipmap/ic_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_gravity="center_vertical" />
+        android:id="@+id/imageView" />
 
     <TextView
         android:layout_width="wrap_content"

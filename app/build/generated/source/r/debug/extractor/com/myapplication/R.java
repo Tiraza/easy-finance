@@ -1940,7 +1940,7 @@ containing a value of this type.
         public static final int abc_textfield_search_material=0x7f02003a;
         public static final int circle_mask=0x7f02003b;
         public static final int gradient_app=0x7f02003c;
-        public static final int texture=0x7f02003d;
+        public static final int launcher=0x7f02003d;
     }
     public static final class id {
         public static final int account_header_drawer=0x7f090057;
