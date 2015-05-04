@@ -8,11 +8,17 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.EasyFinance" >
         <activity
-            android:name=".ui.EasyFinanceActivity"
+            android:name="extractor.com.easyfinance.ui.activity.MainActivity"
             android:label="@string/title_activity_easy_finance" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="extractor.com.easyfinance.ui.activity.SplashActivity"
+            android:label="@string/title_activity_splash" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

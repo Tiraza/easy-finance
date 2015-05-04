@@ -16,8 +16,8 @@
 
     <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->
     <!-- MaterialDrawer DEFAULT colors -->
-    <color name="material_drawer_window_background">#F9F9F9</color>
-    <color name="material_drawer_background">#009688</color>
+    <color name="material_drawer_window_background">@color/colorPrimaryDark</color>
+    <color name="material_drawer_background">#F9F9F9</color>
     <!-- Material DEFAULT text / items colors -->
     <color name="material_drawer_icons">#FFF</color>
     <color name="material_drawer_primary_text">#DE000000</color>
@@ -27,6 +27,6 @@
     <color name="material_drawer_divider">#1F000000</color>
     <!-- Material DEFAULT drawer colors -->
     <color name="material_drawer_selected">#E8E8E8</color>
-    <color name="material_drawer_selected_text">#009688</color>
-    <color name="material_drawer_header_selection_text">#FFF</color>
+    <color name="material_drawer_selected_text">@color/colorPrimaryDark</color>
+    <color name="material_drawer_header_selection_text">@color/colorPrimaryDark</color>
 </resources>
