@@ -44,6 +44,8 @@ public class MainActivity extends ActionBarActivity {
     public final int CONFIGURACOES_FRAGMENT = 4;
     public final int SOBRE_FRAGMENT = 5;
 
+    public FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
         mToolbar.setTitle("Easy Finance");
         setSupportActionBar(mToolbar);
 
-        final FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         headerResult = new AccountHeader()
             .withActivity(this)
@@ -77,13 +79,22 @@ public class MainActivity extends ActionBarActivity {
             .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.replace(android.R.id.content, getFragment(position));
-                    transaction.commit();
-                    Toast.makeText(MainActivity.this, "Fragment: " + getFragment(position).getClass().getSimpleName(), Toast.LENGTH_SHORT).show();
+                    replaceFragment(getFragment(position));
                 }
             })
             .build();
+    }
+
+    private void replaceFragment (Fragment fragment){
+        String backStateName = fragment.getClass().getName();
+        boolean fragmentPopped = fragmentManager.popBackStackImmediate (backStateName, 0);
+
+        if (!fragmentPopped){
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(android.R.id.content, fragment);
+            ft.addToBackStack(backStateName);
+            ft.commit();
+        }
     }
 
     private Fragment getFragment(int position) {
