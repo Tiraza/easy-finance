@@ -9,10 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import extractor.com.easyfinance.ui.activity.MainActivity;
+
 /**
  * @author Muryllo Tiraza
  */
 public class SobreFragment extends Fragment{
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        MainActivity mainActivity = (MainActivity) activity;
+        mainActivity.mToolbar.setTitle("Sobre");
+    }
 
     @Nullable
     @Override

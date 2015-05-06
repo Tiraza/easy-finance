@@ -91,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
 
         if (!fragmentPopped){
             FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(android.R.id.content, fragment);
+            ft.replace(R.id.frame_container, fragment);
             ft.addToBackStack(backStateName);
             ft.commit();
         }
