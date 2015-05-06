@@ -37,14 +37,23 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         StringBuilder CRIA_TABELA_DESPESAS = new StringBuilder();
-        CRIA_TABELA_DESPESAS.append("CREATE TABLE ").append(TABELA_DESPESAS);
-        CRIA_TABELA_DESPESAS.append(" (").append(DESPESAS_COLUNA_ID).append(" INTEGER PRIMARY KEY, ");
+        CRIA_TABELA_DESPESAS.append("CREATE TABLE ").append(TABELA_DESPESAS).append(" (");
+        CRIA_TABELA_DESPESAS.append(DESPESAS_COLUNA_ID).append(" INTEGER PRIMARY KEY, ");
         CRIA_TABELA_DESPESAS.append(DESPESAS_COLUNA_TIPO).append(" INTEGER, ");
         CRIA_TABELA_DESPESAS.append(DESPESAS_COLUNA_DESCRICAO).append(" TEXT, ");
         CRIA_TABELA_DESPESAS.append(DESPESAS_COLUNA_DATA).append(" TEXT, ");
-        CRIA_TABELA_DESPESAS.append(DESPESAS_COLUNA_VALOR).append(" NUMBER)");
+        CRIA_TABELA_DESPESAS.append(DESPESAS_COLUNA_VALOR).append(" REAL)");
+
+        StringBuilder CRIA_TABELA_RECEITAS = new StringBuilder();
+        CRIA_TABELA_RECEITAS.append("CREATE TABLE ").append(TABELA_RECEITAS).append(" (");
+        CRIA_TABELA_RECEITAS.append(RECEITAS_COLUNA_ID).append(" INTEGER PRIMARY KEY, ");
+        CRIA_TABELA_RECEITAS.append(RECEITAS_COLUNA_TIPO).append(" INTEGER, ");
+        CRIA_TABELA_RECEITAS.append(RECEITAS_COLUNA_DESCRICAO).append(" TEXT, ");
+        CRIA_TABELA_RECEITAS.append(RECEITAS_COLUNA_DATA).append(" TEXT, ");
+        CRIA_TABELA_RECEITAS.append(RECEITAS_COLUNA_VALOR).append(" REAL)");
 
         db.execSQL(CRIA_TABELA_DESPESAS.toString());
+        db.execSQL(CRIA_TABELA_RECEITAS.toString());
     }
 
     @Override

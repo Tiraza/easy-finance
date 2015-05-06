@@ -32,6 +32,7 @@ public class DespesasFragment extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_lista_despesas, container, false);
 
         fab = (FloatingActionMenu) rootView.findViewById(R.id.fab);
+        despesas = getDespesas();
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_list_despesas);
         mRecyclerView.setHasFixedSize(true);
@@ -54,14 +55,27 @@ public class DespesasFragment extends Fragment{
             }
         });
 
-
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);
 
-        //CommonAdapter adapter = new CommonAdapter(getActivity(), despesas);
-        //mRecyclerView.setAdapter(adapter);
+        CommonAdapter adapter = new CommonAdapter(getActivity(), despesas);
+        mRecyclerView.setAdapter(adapter);
 
         return rootView;
+    }
+
+    public ArrayList<Despesa> getDespesas(){
+        Despesa despesa;
+        ArrayList<Despesa> retorno = new ArrayList<>();
+        for (int i = 0; i < 15; i++) {
+            despesa = new Despesa();
+            despesa.setData("06/05/2015");
+            despesa.setDescricao("Despesa " + i);
+            despesa.setTipo(1);
+            despesa.setValor(1.00 * i);
+            retorno.add(despesa);
+        }
+        return retorno;
     }
 }

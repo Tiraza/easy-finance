@@ -87,7 +87,7 @@ public class MainActivity extends ActionBarActivity {
 
     private void replaceFragment (Fragment fragment){
         String backStateName = fragment.getClass().getName();
-        boolean fragmentPopped = fragmentManager.popBackStackImmediate (backStateName, 0);
+        boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStateName, 0);
 
         if (!fragmentPopped){
             FragmentTransaction ft = fragmentManager.beginTransaction();
