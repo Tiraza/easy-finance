@@ -1,6 +1,5 @@
 package extractor.com.easyfinance.ui.fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,9 +28,9 @@ public class DespesasFragment extends Fragment{
     private ListView lvDespesas;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        MainActivity mainActivity = (MainActivity) activity;
+    public void onResume() {
+        super.onResume();
+        MainActivity mainActivity = (MainActivity) getActivity();
         mainActivity.mToolbar.setTitle("Despesas");
     }
 
