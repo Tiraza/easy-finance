@@ -5,17 +5,17 @@ package extractor.com.easyfinance.model;
  */
 public class Receita {
 
-    private int ID;
+    private Integer ID;
     private int tipo;
     private String descricao;
     private String data;
     private Double valor;
 
-    public int getID() {
+    public Integer getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 
