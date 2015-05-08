@@ -69,9 +69,9 @@ public class MainActivity extends ActionBarActivity {
             .withAccountHeader(headerResult)
             .withActionBarDrawerToggleAnimated(true)
             .addDrawerItems(
-                    new PrimaryDrawerItem().withName("Home"),
-                    new PrimaryDrawerItem().withName("Receitas"),
-                    new PrimaryDrawerItem().withName("Despesas"),
+                    new PrimaryDrawerItem().withName("Home").withIcon(R.mipmap.ic_home),
+                    new PrimaryDrawerItem().withName("Receitas").withIcon(R.mipmap.ic_receita),
+                    new PrimaryDrawerItem().withName("Despesas").withIcon(R.mipmap.ic_despesa),
                     new DividerDrawerItem(),
                     new SecondaryDrawerItem().withName("Configurações"),
                     new SecondaryDrawerItem().withName("Sobre")
@@ -79,6 +79,16 @@ public class MainActivity extends ActionBarActivity {
             .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+                    for (int count = 0, tam = 2; count <= tam; count++) {
+                        PrimaryDrawerItem aux = (PrimaryDrawerItem) drawerResult.getDrawerItems().get(count);
+                        aux.setIcon(getResources().getDrawable(getIcon(count, false)));
+                    }
+
+                    if (position <= 2) {
+                        PrimaryDrawerItem aux = (PrimaryDrawerItem) drawerResult.getDrawerItems().get(position);
+                        aux.setIcon(getResources().getDrawable(getIcon(position, true)));
+                    }
+
                     replaceFragment(getFragment(position));
                 }
             })
@@ -131,6 +141,22 @@ public class MainActivity extends ActionBarActivity {
 
             default:
                 return null;
+        }
+    }
+
+    private int getIcon(int position, Boolean isSelected){
+        switch (position){
+            case HOME_FRAGMENT:
+                return (isSelected ? R.mipmap.ic_home_dark_color : R.mipmap.ic_home);
+
+            case RECEITAS_FRAGMENT:
+                return (isSelected ? R.mipmap.ic_receita_dark_color : R.mipmap.ic_receita);
+
+            case DESPESAS_FRAGMENT:
+                return (isSelected ? R.mipmap.ic_despesa_dark_color : R.mipmap.ic_despesa);
+
+            default:
+                return 0;
         }
     }
 

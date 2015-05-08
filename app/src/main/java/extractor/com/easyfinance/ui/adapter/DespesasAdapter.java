@@ -38,7 +38,7 @@ public class DespesasAdapter extends BaseAdapter{
 
     @Override
     public long getItemId(int position) {
-        return despesas.get(position).getID();
+        return new Long(despesas.get(position).getID());
     }
 
     @Override

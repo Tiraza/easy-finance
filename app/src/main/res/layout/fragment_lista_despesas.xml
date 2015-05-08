@@ -29,8 +29,8 @@
             android:id="@+id/fabNovo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_plus"
-            fab:fab_size="normal"
+            android:src="@mipmap/ic_despesa_white"
+            fab:fab_size="mini"
             fab:fab_label="Novo"
             fab:fab_colorNormal="@color/colorPrimary"
             fab:fab_colorPressed="@color/colorPrimaryDark"/>
@@ -39,8 +39,8 @@
             android:id="@+id/fabExcluir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_plus"
-            fab:fab_size="normal"
+            android:src="@mipmap/ic_delete_white"
+            fab:fab_size="mini"
             fab:fab_label="Excluir"
             fab:fab_colorNormal="@color/colorPrimary"
             fab:fab_colorPressed="@color/colorPrimaryDark"/>

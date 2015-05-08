@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
@@ -25,6 +27,9 @@ public class DespesasFragment extends Fragment{
     private ArrayList<Despesa> despesas;
 
     private FloatingActionMenu fab;
+    private FloatingActionButton fabNovo;
+    private FloatingActionButton fabExcluir;
+
     private ListView lvDespesas;
 
     @Override
@@ -41,6 +46,12 @@ public class DespesasFragment extends Fragment{
         despesas = getDespesas();
 
         fab = (FloatingActionMenu) rootView.findViewById(R.id.fab);
+        fabNovo = (FloatingActionButton) rootView.findViewById(R.id.fabNovo);
+        fabExcluir = (FloatingActionButton) rootView.findViewById(R.id.fabExcluir);
+
+        fabNovo.setOnClickListener(clickListener);
+        fabExcluir.setOnClickListener(clickListener);
+
         lvDespesas = (ListView) rootView.findViewById(R.id.lvDespesas);
 
         DespesasAdapter adapter = new DespesasAdapter(despesas);
@@ -54,6 +65,7 @@ public class DespesasFragment extends Fragment{
         ArrayList<Despesa> retorno = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
             despesa = new Despesa();
+            despesa.setID(Integer.valueOf(i));
             despesa.setData("06/05/2015");
             despesa.setDescricao("Despesa " + i);
             despesa.setTipo(1);
@@ -62,4 +74,22 @@ public class DespesasFragment extends Fragment{
         }
         return retorno;
     }
+
+    private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String text = "";
+
+            switch (v.getId()) {
+                case R.id.fabNovo:
+                    text = fabNovo.getLabelText();
+                    break;
+                case R.id.fabExcluir:
+                    text = fabExcluir.getLabelText();
+                    break;
+            }
+
+            Toast.makeText(getActivity(), "Button " + text, Toast.LENGTH_SHORT).show();
+        }
+    };
 }

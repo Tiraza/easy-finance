@@ -2516,8 +2516,18 @@ containing a value of this type.
         public static final int toolbar_bottom=0x7f04002f;
     }
     public static final class mipmap {
-        public static final int ic_launcher=0x7f030000;
-        public static final int ic_plus=0x7f030001;
+        public static final int ic_delete_white=0x7f030000;
+        public static final int ic_despesa=0x7f030001;
+        public static final int ic_despesa_dark_color=0x7f030002;
+        public static final int ic_despesa_white=0x7f030003;
+        public static final int ic_home=0x7f030004;
+        public static final int ic_home_dark_color=0x7f030005;
+        public static final int ic_home_white=0x7f030006;
+        public static final int ic_launcher=0x7f030007;
+        public static final int ic_plus=0x7f030008;
+        public static final int ic_receita=0x7f030009;
+        public static final int ic_receita_dark_color=0x7f03000a;
+        public static final int ic_receita_white=0x7f03000b;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f0b0000;
