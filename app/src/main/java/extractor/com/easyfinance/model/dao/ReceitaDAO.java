@@ -1,4 +1,4 @@
-package extractor.com.easyfinance.controler.dao;
+package extractor.com.easyfinance.model.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import extractor.com.easyfinance.controler.DBHelper;
 import extractor.com.easyfinance.controler.EasyFinance;
-import extractor.com.easyfinance.model.Receita;
+import extractor.com.easyfinance.model.entities.Receita;
 
 /**
  * @author Muryllo Tiraza

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import extractor.com.easyfinance.controler.EasyFinance;
-import extractor.com.easyfinance.model.Despesa;
+import extractor.com.easyfinance.model.entities.Despesa;
 import extractor.com.myapplication.R;
 
 /**

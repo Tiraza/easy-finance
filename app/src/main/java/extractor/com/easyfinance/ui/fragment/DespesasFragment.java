@@ -14,7 +14,9 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 
-import extractor.com.easyfinance.model.Despesa;
+import extractor.com.easyfinance.controler.EasyFinance;
+import extractor.com.easyfinance.model.dao.DespesaDAO;
+import extractor.com.easyfinance.model.entities.Despesa;
 import extractor.com.easyfinance.ui.activity.MainActivity;
 import extractor.com.easyfinance.ui.adapter.DespesasAdapter;
 import extractor.com.myapplication.R;
@@ -29,21 +31,24 @@ public class DespesasFragment extends Fragment{
     private FloatingActionMenu fab;
     private FloatingActionButton fabNovo;
     private FloatingActionButton fabExcluir;
+    private MainActivity mainActivity;
 
     private ListView lvDespesas;
+    private DespesaDAO mDespesaDAO;
 
     @Override
     public void onResume() {
         super.onResume();
-        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity = (MainActivity) getActivity();
         mainActivity.mToolbar.setTitle("Despesas");
+        mDespesaDAO = EasyFinance.getDespesaDAO();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_lista_despesas, container, false);
-        despesas = getDespesas();
+        despesas = mDespesaDAO.getList();
 
         fab = (FloatingActionMenu) rootView.findViewById(R.id.fab);
         fabNovo = (FloatingActionButton) rootView.findViewById(R.id.fabNovo);
@@ -60,36 +65,17 @@ public class DespesasFragment extends Fragment{
         return rootView;
     }
 
-    public ArrayList<Despesa> getDespesas(){
-        Despesa despesa;
-        ArrayList<Despesa> retorno = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            despesa = new Despesa();
-            despesa.setID(Integer.valueOf(i));
-            despesa.setData("06/05/2015");
-            despesa.setDescricao("Despesa " + i);
-            despesa.setTipo(1);
-            despesa.setValor(1.00 * i);
-            retorno.add(despesa);
-        }
-        return retorno;
-    }
-
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String text = "";
-
             switch (v.getId()) {
                 case R.id.fabNovo:
-                    text = fabNovo.getLabelText();
+                    mainActivity.replaceFragment(new NovaDespesaFragment());
                     break;
                 case R.id.fabExcluir:
-                    text = fabExcluir.getLabelText();
+                    Toast.makeText(getActivity(), "Button " + fabExcluir.getLabelText(), Toast.LENGTH_SHORT).show();
                     break;
             }
-
-            Toast.makeText(getActivity(), "Button " + text, Toast.LENGTH_SHORT).show();
         }
     };
 }

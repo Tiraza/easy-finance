@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
-
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -69,9 +67,9 @@ public class MainActivity extends ActionBarActivity {
             .withAccountHeader(headerResult)
             .withActionBarDrawerToggleAnimated(true)
             .addDrawerItems(
-                    new PrimaryDrawerItem().withName("Home").withIcon(R.mipmap.ic_home),
-                    new PrimaryDrawerItem().withName("Receitas").withIcon(R.mipmap.ic_receita),
-                    new PrimaryDrawerItem().withName("Despesas").withIcon(R.mipmap.ic_despesa),
+                    new PrimaryDrawerItem().withName("Home"),
+                    new PrimaryDrawerItem().withName("Receitas"),
+                    new PrimaryDrawerItem().withName("Despesas"),
                     new DividerDrawerItem(),
                     new SecondaryDrawerItem().withName("Configurações"),
                     new SecondaryDrawerItem().withName("Sobre")
@@ -79,15 +77,17 @@ public class MainActivity extends ActionBarActivity {
             .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-                    for (int count = 0, tam = 2; count <= tam; count++) {
+                    /*for (int count = 0, tam = 2; count <= tam; count++) {
                         PrimaryDrawerItem aux = (PrimaryDrawerItem) drawerResult.getDrawerItems().get(count);
-                        aux.setIcon(getResources().getDrawable(getIcon(count, false)));
+                        //aux.setIcon(getResources().getDrawable(getIcon(count, false)));
+                        aux.setIconColor(getResources().getColor(R.color.black));
                     }
 
                     if (position <= 2) {
                         PrimaryDrawerItem aux = (PrimaryDrawerItem) drawerResult.getDrawerItems().get(position);
-                        aux.setIcon(getResources().getDrawable(getIcon(position, true)));
-                    }
+                        //aux.setIcon(getResources().getDrawable(getIcon(position, true)));
+                        aux.setIconColor(getResources().getColor(R.color.colorPrimaryDark));
+                    }*/
 
                     replaceFragment(getFragment(position));
                 }
@@ -95,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
             .build();
     }
 
-    private void replaceFragment (Fragment fragment){
+    public void replaceFragment (Fragment fragment){
         String backStateName = fragment.getClass().getName();
         boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStateName, 0);
 

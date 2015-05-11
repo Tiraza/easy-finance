@@ -1,4 +1,4 @@
-package extractor.com.easyfinance.model;
+package extractor.com.easyfinance.model.entities;
 
 /**
  * @author Muryllo Tiraza

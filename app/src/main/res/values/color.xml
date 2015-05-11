@@ -8,6 +8,9 @@
     <color name="colorAccent">#795548</color>
 
 
+    <color name="mdtp_accent_color">@color/colorPrimary</color>
+    <color name="mdtp_accent_color_dark">@color/colorPrimaryDark</color>
+
     <!-- Material DEFAULT colors -->
     <color name="material_drawer_primary">#009688</color>
     <color name="material_drawer_primary_dark">#00796B</color>
