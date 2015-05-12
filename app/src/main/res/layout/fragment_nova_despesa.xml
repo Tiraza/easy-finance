@@ -12,19 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Descrição"
+        android:text="@string/descricao"
         android:id="@+id/textView3" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText" />
+        android:id="@+id/edtDescricao" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Data"
+        android:text="@string/data"
         android:id="@+id/textView4" />
 
     <LinearLayout
@@ -40,20 +40,20 @@
             android:id="@+id/edtData" />
 
         <ImageButton
-            android:src="@mipmap/ic_home_dark_color"
+            android:background="@color/colorPrimary"
+            android:src="@mipmap/ic_home_white"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:id="@+id/imbData"
             android:cropToPadding="false"
-            android:clickable="false"
-            android:onClick="onClickImbData"/>
+            android:clickable="false"/>
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Valor"
+        android:text="@string/valor"
         android:id="@+id/textView5" />
 
     <EditText
@@ -61,18 +61,14 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText3" />
+        android:id="@+id/edtValor" />
 
-    <TextView
+    <Button
+        android:background="@drawable/button_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Tipo"
-        android:id="@+id/textView2" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner" />
+        android:text="@string/salvar"
+        android:id="@+id/btnSalvar"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

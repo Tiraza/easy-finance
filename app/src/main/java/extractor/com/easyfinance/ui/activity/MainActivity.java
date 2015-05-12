@@ -67,12 +67,12 @@ public class MainActivity extends ActionBarActivity {
             .withAccountHeader(headerResult)
             .withActionBarDrawerToggleAnimated(true)
             .addDrawerItems(
-                    new PrimaryDrawerItem().withName("Home"),
-                    new PrimaryDrawerItem().withName("Receitas"),
-                    new PrimaryDrawerItem().withName("Despesas"),
+                    new PrimaryDrawerItem().withName(R.string.home),
+                    new PrimaryDrawerItem().withName(R.string.receitas),
+                    new PrimaryDrawerItem().withName(R.string.despesas),
                     new DividerDrawerItem(),
-                    new SecondaryDrawerItem().withName("Configurações"),
-                    new SecondaryDrawerItem().withName("Sobre")
+                    new SecondaryDrawerItem().withName(R.string.configuracoes),
+                    new SecondaryDrawerItem().withName(R.string.sobre)
             )
             .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                 @Override
@@ -93,6 +93,16 @@ public class MainActivity extends ActionBarActivity {
                 }
             })
             .build();
+
+        replaceFragment(getFragment(HOME_FRAGMENT));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (fragmentManager.getBackStackEntryCount() == 1) {
+            finish();
+        }
+        super.onBackPressed();
     }
 
     public void replaceFragment (Fragment fragment){

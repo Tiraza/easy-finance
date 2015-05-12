@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_despesa_white"
             fab:fab_size="mini"
-            fab:fab_label="Novo"
+            fab:fab_label="@string/novo"
             fab:fab_colorNormal="@color/colorPrimary"
             fab:fab_colorPressed="@color/colorPrimaryDark"/>
 
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_delete_white"
             fab:fab_size="mini"
-            fab:fab_label="Excluir"
+            fab:fab_label="@string/excluir"
             fab:fab_colorNormal="@color/colorPrimary"
             fab:fab_colorPressed="@color/colorPrimaryDark"/>
 

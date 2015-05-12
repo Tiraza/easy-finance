@@ -48,6 +48,8 @@ public class DespesasFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_lista_despesas, container, false);
+
+        mDespesaDAO = EasyFinance.getDespesaDAO();
         despesas = mDespesaDAO.getList();
 
         fab = (FloatingActionMenu) rootView.findViewById(R.id.fab);
