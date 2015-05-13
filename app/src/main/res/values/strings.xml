@@ -17,5 +17,6 @@
     <string name="descricao">Descrição</string>
     <string name="data">Data</string>
     <string name="valor">Valor</string>
+    <string name="campo_obrigatorio">Preenchimento Obrigatório</string>
 
 </resources>

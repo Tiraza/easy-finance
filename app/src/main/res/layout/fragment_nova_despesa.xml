@@ -8,56 +8,42 @@
     android:paddingRight="8dp"
     android:paddingLeft="8dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/descricao"
-        android:id="@+id/textView3" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtDescricao" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/data"
-        android:id="@+id/textView4" />
+        android:id="@+id/edtDescricao"
+        android:hint="@string/descricao"
+        android:layout_marginTop="8dp" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
 
         <EditText
-            android:layout_width="wrap_content"
+            android:hint="@string/data"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
             android:id="@+id/edtData" />
 
         <ImageButton
-            android:background="@color/colorPrimary"
-            android:src="@mipmap/ic_home_white"
+            android:background="@drawable/button_normal"
+            android:src="@mipmap/ic_calendario"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:id="@+id/imbData"
             android:cropToPadding="false"
-            android:clickable="false"/>
+            android:layout_marginLeft="8dp" />
+
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/valor"
-        android:id="@+id/textView5" />
-
     <EditText
-        android:layout_width="wrap_content"
+        android:hint="@string/valor"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
@@ -69,6 +55,7 @@
         android:layout_height="wrap_content"
         android:text="@string/salvar"
         android:id="@+id/btnSalvar"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

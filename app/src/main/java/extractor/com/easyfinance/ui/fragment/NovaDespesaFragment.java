@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import extractor.com.easyfinance.controler.EasyFinance;
 import extractor.com.easyfinance.model.entities.Despesa;
 import extractor.com.easyfinance.ui.activity.MainActivity;
 import extractor.com.myapplication.R;
@@ -32,6 +31,14 @@ public class NovaDespesaFragment extends Fragment implements DatePickerDialog.On
     private EditText edtValor;
     private Button btnSalvar;
     private int mDia, mMes, mAno;
+    private MainActivity mainActivity;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mainActivity = (MainActivity) getActivity();
+        mainActivity.mToolbar.setTitle("Nova Despesa");
+    }
 
     @Nullable
     @Override
@@ -43,6 +50,8 @@ public class NovaDespesaFragment extends Fragment implements DatePickerDialog.On
         edtDescricao = (EditText) rootView.findViewById(R.id.edtDescricao);
         edtValor = (EditText) rootView.findViewById(R.id.edtValor);
         btnSalvar = (Button) rootView.findViewById(R.id.btnSalvar);
+
+        edtData.setEnabled(false);
 
         Calendar now = Calendar.getInstance();
         mAno = now.get(Calendar.YEAR);
@@ -62,16 +71,18 @@ public class NovaDespesaFragment extends Fragment implements DatePickerDialog.On
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Despesa despesa = new Despesa();
-                despesa.setTipo(1);
-                despesa.setDescricao(edtDescricao.getText().toString());
-                despesa.setData(edtData.getText().toString());
-                despesa.setValor(Double.valueOf(edtValor.getText().toString()));
+                if(validaCampos()){
+                    Despesa despesa = new Despesa();
+                    despesa.setTipo(1);
+                    despesa.setDescricao(edtDescricao.getText().toString());
+                    despesa.setData(edtData.getText().toString());
+                    despesa.setValor(Double.valueOf(edtValor.getText().toString()));
 
-               //EasyFinance.getDespesaDAO().inseir(despesa);
+                    //EasyFinance.getDespesaDAO().inseir(despesa);
 
-                MainActivity activity = (MainActivity) getActivity();
-                activity.fragmentManager.popBackStackImmediate();
+                    MainActivity activity = (MainActivity) getActivity();
+                    activity.fragmentManager.popBackStackImmediate();
+                }
             }
         });
 
@@ -87,7 +98,26 @@ public class NovaDespesaFragment extends Fragment implements DatePickerDialog.On
         Calendar date = Calendar.getInstance();
         date.set(mAno, mMes, mDia);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         edtData.setText(dateFormat.format(date.getTime()));
+    }
+
+    private Boolean validaCampos(){
+        Boolean retorno = true;
+
+        if(edtDescricao.getText().toString().equals("")){
+            edtDescricao.setError(getActivity().getResources().getString(R.string.campo_obrigatorio));
+            retorno = false;
+        }
+        if(edtData.getText().toString().equals("")){
+            edtData.setError(getActivity().getResources().getString(R.string.campo_obrigatorio));
+            retorno = false;
+        }
+        if(edtValor.getText().toString().equals("")){
+            edtValor.setError(getActivity().getResources().getString(R.string.campo_obrigatorio));
+            retorno = false;
+        }
+
+        return retorno;
     }
 }

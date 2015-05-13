@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import extractor.com.easyfinance.controler.EasyFinance;
@@ -20,10 +21,12 @@ public class DespesasAdapter extends BaseAdapter{
 
     private ArrayList<Despesa> despesas;
     private Context context;
+    private NumberFormat numberFormat;
 
     public DespesasAdapter(ArrayList<Despesa> despesas) {
         this.despesas = despesas;
         context = EasyFinance.getAppContext();
+        numberFormat = NumberFormat.getCurrencyInstance();
     }
 
     @Override
@@ -52,7 +55,7 @@ public class DespesasAdapter extends BaseAdapter{
 
         txtDescricao.setText(getItem(position).getDescricao());
         txtData.setText(getItem(position).getData());
-        txtValor.setText(getItem(position).getValor().toString());
+        txtValor.setText(numberFormat.format(getItem(position).getValor()));
 
         return rootView;
     }
