@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class DespesasFragment extends Fragment{
     private MainActivity mainActivity;
 
     private ListView lvDespesas;
+    private DespesasAdapter adapter;
     private DespesaDAO mDespesaDAO;
 
     @Override
@@ -61,8 +63,21 @@ public class DespesasFragment extends Fragment{
 
         lvDespesas = (ListView) rootView.findViewById(R.id.lvDespesas);
 
-        DespesasAdapter adapter = new DespesasAdapter(despesas);
+        adapter = new DespesasAdapter(despesas);
         lvDespesas.setAdapter(adapter);
+
+        lvDespesas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", adapter.getItem(i).getID().intValue());
+
+                EditarDespesaFragment fragment = new EditarDespesaFragment();
+                fragment.setArguments(bundle);
+
+                mainActivity.replaceFragment(fragment);
+            }
+        });
 
         return rootView;
     }

@@ -24,21 +24,21 @@ import extractor.com.myapplication.R;
 /**
  * @author Muryllo Tiraza
  */
-public class NovaDespesaFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class EditarDespesaFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
 
     private ImageButton imbData;
     private EditText edtData;
     private EditText edtDescricao;
     private EditText edtValor;
     private Button btnSalvar;
-    private int mDia, mMes, mAno;
+    private int mDia, mMes, mAno, id;
     private MainActivity mainActivity;
 
     @Override
     public void onResume() {
         super.onResume();
         mainActivity = (MainActivity) getActivity();
-        mainActivity.mToolbar.setTitle("Nova Despesa");
+        mainActivity.mToolbar.setTitle("Editar Despesa");
     }
 
     @Nullable
@@ -46,11 +46,24 @@ public class NovaDespesaFragment extends Fragment implements DatePickerDialog.On
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_nova_despesa, container, false);
 
+        Bundle bundle = this.getArguments();
+        Despesa despesa = null;
+        if (bundle != null) {
+            id = bundle.getInt("id", 0);
+            despesa  = EasyFinance.getDespesaDAO().get(id);
+        }
+
         imbData = (ImageButton) rootView.findViewById(R.id.imbData);
         edtData = (EditText) rootView.findViewById(R.id.edtData);
         edtDescricao = (EditText) rootView.findViewById(R.id.edtDescricao);
         edtValor = (EditText) rootView.findViewById(R.id.edtValor);
         btnSalvar = (Button) rootView.findViewById(R.id.btnSalvar);
+
+        if(despesa != null){
+            edtDescricao.setText(despesa.getDescricao());
+            edtData.setText(despesa.getData());
+            edtValor.setText(despesa.getValor().toString());
+        }
 
         edtData.setEnabled(false);
 
@@ -63,7 +76,7 @@ public class NovaDespesaFragment extends Fragment implements DatePickerDialog.On
             @Override
             public void onClick(View view) {
                 DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        NovaDespesaFragment.this, mAno, mMes, mDia
+                        EditarDespesaFragment.this, mAno, mMes, mDia
                 );
                 dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
             }
@@ -74,12 +87,13 @@ public class NovaDespesaFragment extends Fragment implements DatePickerDialog.On
             public void onClick(View view) {
                 if(validaCampos()){
                     Despesa despesa = new Despesa();
+                    despesa.setID(id);
                     despesa.setTipo(1);
                     despesa.setDescricao(edtDescricao.getText().toString());
                     despesa.setData(edtData.getText().toString());
                     despesa.setValor(Double.valueOf(edtValor.getText().toString()));
 
-                    EasyFinance.getDespesaDAO().inseir(despesa);
+                    EasyFinance.getDespesaDAO().editar(despesa);
 
                     MainActivity activity = (MainActivity) getActivity();
                     activity.fragmentManager.popBackStackImmediate();

@@ -9,6 +9,7 @@
     android:paddingLeft="8dp">
 
     <EditText
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edtDescricao"
@@ -23,6 +24,7 @@
         android:layout_marginBottom="8dp">
 
         <EditText
+            android:textColor="@color/black"
             android:hint="@string/data"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -42,6 +44,7 @@
     </LinearLayout>
 
     <EditText
+        android:textColor="@color/black"
         android:hint="@string/valor"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
