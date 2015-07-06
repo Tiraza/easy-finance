@@ -1,62 +1,61 @@
 package extractor.com.easyfinance.ui.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
 
-import extractor.com.easyfinance.controler.EasyFinance;
-import extractor.com.easyfinance.model.entities.Despesa;
+import extractor.com.easyfinance.model.entities.Receita;
+import extractor.com.easyfinance.util.UtilDate;
 import extractor.com.myapplication.R;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
-/**
- * @author Muryllo Tiraza
- */
-public class DespesasAdapter extends BaseAdapter{
+public class DespesasAdapter extends RecyclerView.Adapter<DespesasAdapter.ViewHolderDespesas> {
 
-    private ArrayList<Despesa> despesas;
-    private Context context;
+    private RealmResults<Receita> listDespesas;
     private NumberFormat numberFormat;
 
-    public DespesasAdapter(ArrayList<Despesa> despesas) {
-        this.despesas = despesas;
-        context = EasyFinance.getAppContext();
+    public DespesasAdapter(Context context) {
+        listDespesas = Realm.getInstance(context).where(Receita.class).findAll();
         numberFormat = NumberFormat.getCurrencyInstance();
     }
 
     @Override
-    public int getCount() {
-        return despesas.size();
+    public ViewHolderDespesas onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_listview, parent, false);
+        return new ViewHolderDespesas(view);
     }
 
     @Override
-    public Despesa getItem(int position) {
-        return despesas.get(position);
+    public void onBindViewHolder(ViewHolderDespesas holder, int position) {
+        holder.txtDescricao.setText(listDespesas.get(position).getDescricao());
+        holder.txtData.setText(UtilDate.getDateFormatted(listDespesas.get(position).getData()));
+        holder.txtValor.setText(numberFormat.format(listDespesas.get(position).getValor()));
     }
 
     @Override
-    public long getItemId(int position) {
-        return new Long(despesas.get(position).getID());
+    public int getItemCount() {
+        return listDespesas.size();
     }
 
-    @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rootView = inflater.inflate(R.layout.item_listview, parent, false);
+    public class ViewHolderDespesas extends RecyclerView.ViewHolder {
 
-        TextView txtDescricao = (TextView) rootView.findViewById(R.id.txtDescricao);
-        TextView txtData = (TextView) rootView.findViewById(R.id.txtData);
-        TextView txtValor = (TextView) rootView.findViewById(R.id.txtValor);
+        protected TextView txtDescricao;
+        protected TextView txtData;
+        protected TextView txtValor;
 
-        txtDescricao.setText(getItem(position).getDescricao());
-        txtData.setText(getItem(position).getData());
-        txtValor.setText(numberFormat.format(getItem(position).getValor()));
+        public ViewHolderDespesas(View itemView) {
+            super(itemView);
+            txtDescricao = (TextView) itemView.findViewById(R.id.txtDescricao);
+            txtData = (TextView) itemView.findViewById(R.id.txtData);
+            txtValor = (TextView) itemView.findViewById(R.id.txtValor);
+        }
 
-        return rootView;
     }
+
 }

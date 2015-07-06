@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home"/>
+        <item
+            android:id="@+id/menu_receitas"
+            android:icon="@drawable/ic_receita"
+            android:title="@string/receitas"/>
+        <item
+            android:id="@+id/menu_despesas"
+            android:icon="@drawable/ic_despesa"
+            android:title="@string/despesas"/>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_configuracoes"
+            android:title="@string/configuracoes"/>
+        <item
+            android:id="@+id/menu_sobre"
+            android:title="@string/sobre"/>
+    </group>
+
+</menu>

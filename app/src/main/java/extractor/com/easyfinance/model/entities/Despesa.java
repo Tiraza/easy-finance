@@ -1,29 +1,40 @@
 package extractor.com.easyfinance.model.entities;
 
+import java.util.Date;
+import java.util.UUID;
+
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * @author Muryllo Tiraza
  */
-public class Despesa {
+public class Despesa extends RealmObject {
 
-    private Integer ID;
-    private int tipo;
+    @PrimaryKey
+    private String id;
+    private Tipo tipo;
     private String descricao;
-    private String data;
-    private Double valor;
+    private Date data;
+    private double valor;
 
-    public Integer getID() {
-        return ID;
+    public Despesa() {
+        this.id = UUID.randomUUID().toString();
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public String getId() {
+        return id;
     }
 
-    public int getTipo() {
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 
@@ -35,19 +46,20 @@ public class Despesa {
         this.descricao = descricao;
     }
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
-    public Double getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
+
 }

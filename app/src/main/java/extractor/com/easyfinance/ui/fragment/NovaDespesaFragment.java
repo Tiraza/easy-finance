@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import extractor.com.easyfinance.controler.EasyFinance;
 import extractor.com.easyfinance.model.entities.Despesa;
 import extractor.com.easyfinance.ui.activity.MainActivity;
 import extractor.com.myapplication.R;
@@ -38,7 +37,6 @@ public class NovaDespesaFragment extends Fragment implements DatePickerDialog.On
     public void onResume() {
         super.onResume();
         mainActivity = (MainActivity) getActivity();
-        mainActivity.mToolbar.setTitle("Nova Despesa");
     }
 
     @Nullable
@@ -74,15 +72,10 @@ public class NovaDespesaFragment extends Fragment implements DatePickerDialog.On
             public void onClick(View view) {
                 if(validaCampos()){
                     Despesa despesa = new Despesa();
-                    despesa.setTipo(1);
                     despesa.setDescricao(edtDescricao.getText().toString());
-                    despesa.setData(edtData.getText().toString());
                     despesa.setValor(Double.valueOf(edtValor.getText().toString()));
 
-                    EasyFinance.getDespesaDAO().inseir(despesa);
-
                     MainActivity activity = (MainActivity) getActivity();
-                    activity.fragmentManager.popBackStackImmediate();
                 }
             }
         });
