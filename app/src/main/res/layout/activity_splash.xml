@@ -6,7 +6,7 @@
     android:background="@drawable/gradient_app"
     android:gravity="center"
     android:orientation="horizontal"
-    tools:context="extractor.com.easyfinance.ui.activity.SplashActivity">
+    tools:context="br.com.extractor.easyfinance.ui.SplashActivity">
 
     <ImageView
         android:id="@+id/imageView"
