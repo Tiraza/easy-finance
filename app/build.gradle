@@ -17,15 +17,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.0.0'
-    compile 'com.android.support:support-v4:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:design:22.2.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:cardview-v7:22.2.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'io.realm:realm-android:0.81.1'
+    compile 'joda-time:joda-time:2.8.1'
     compile 'com.wdullaer:materialdatetimepicker:1.3.0'
-    compile 'com.github.clans:fab:1.4.0'
-    compile('com.mikepenz.materialdrawer:library:2.9.1@aar') {
-        transitive = true
-    }
 }

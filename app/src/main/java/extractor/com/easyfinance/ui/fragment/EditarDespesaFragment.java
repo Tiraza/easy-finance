@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import extractor.com.easyfinance.controler.EasyFinance;
 import extractor.com.easyfinance.model.entities.Despesa;
 import extractor.com.easyfinance.ui.activity.MainActivity;
 import extractor.com.myapplication.R;
@@ -38,7 +37,6 @@ public class EditarDespesaFragment extends Fragment implements DatePickerDialog.
     public void onResume() {
         super.onResume();
         mainActivity = (MainActivity) getActivity();
-        mainActivity.mToolbar.setTitle("Editar Despesa");
     }
 
     @Nullable
@@ -50,7 +48,6 @@ public class EditarDespesaFragment extends Fragment implements DatePickerDialog.
         Despesa despesa = null;
         if (bundle != null) {
             id = bundle.getInt("id", 0);
-            despesa  = EasyFinance.getDespesaDAO().get(id);
         }
 
         imbData = (ImageButton) rootView.findViewById(R.id.imbData);
@@ -61,8 +58,6 @@ public class EditarDespesaFragment extends Fragment implements DatePickerDialog.
 
         if(despesa != null){
             edtDescricao.setText(despesa.getDescricao());
-            edtData.setText(despesa.getData());
-            edtValor.setText(despesa.getValor().toString());
         }
 
         edtData.setEnabled(false);
@@ -87,16 +82,11 @@ public class EditarDespesaFragment extends Fragment implements DatePickerDialog.
             public void onClick(View view) {
                 if(validaCampos()){
                     Despesa despesa = new Despesa();
-                    despesa.setID(id);
-                    despesa.setTipo(1);
+
                     despesa.setDescricao(edtDescricao.getText().toString());
-                    despesa.setData(edtData.getText().toString());
                     despesa.setValor(Double.valueOf(edtValor.getText().toString()));
 
-                    EasyFinance.getDespesaDAO().editar(despesa);
-
                     MainActivity activity = (MainActivity) getActivity();
-                    activity.fragmentManager.popBackStackImmediate();
                 }
             }
         });

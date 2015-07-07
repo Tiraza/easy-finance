@@ -3,24 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="extractor.com.easyfinance.ui.activity.SplashActivity"
-    android:gravity="center"
     android:background="@drawable/gradient_app"
-    android:orientation="horizontal">
-
+    android:gravity="center"
+    android:orientation="horizontal"
+    tools:context="extractor.com.easyfinance.ui.activity.SplashActivity">
 
     <ImageView
-        android:src="@mipmap/ic_launcher"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView" />
+        android:src="@mipmap/ic_launcher"/>
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/app_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40dp"
-        android:textStyle="bold"
-        android:text="@string/title_activity_easy_finance"
-        android:id="@+id/textView" />
+        android:textStyle="bold"/>
+
 </LinearLayout>

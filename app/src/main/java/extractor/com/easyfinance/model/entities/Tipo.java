@@ -1,19 +1,38 @@
 package extractor.com.easyfinance.model.entities;
 
-/**
- * @author Muryllo Tiraza
- */
-public class Tipo {
+import java.util.UUID;
 
-    private Integer ID;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Tipo extends RealmObject {
+
+    @PrimaryKey
+    private String id;
     private String descricao;
+    /**
+     * @see TipoReceita
+     */
+    private int tipo;
 
-    public Integer getID() {
-        return ID;
+    public Tipo() {
+        this.id = UUID.randomUUID().toString();
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -23,4 +42,5 @@ public class Tipo {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
 }
