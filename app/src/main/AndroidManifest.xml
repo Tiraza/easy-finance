@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
-    package="extractor.com.myapplication"
+    package="br.com.extractor.easyfinance"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="ANDROID.PERMISSION.ACCESS_NETWORK_STATE"/>
@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.EasyFinance" >
         <activity
-            android:name="extractor.com.easyfinance.ui.activity.SplashActivity"
+            android:name=".ui.SplashActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="extractor.com.easyfinance.ui.activity.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name">
         </activity>
     </application>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="extractor.com.myapplication.test">
+    package="br.com.extractor.easyfinance.test">
 
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="22" />
 
@@ -9,8 +9,8 @@
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="extractor.com.myapplication"
+                     android:targetPackage="br.com.extractor.easyfinance"
                      android:handleProfiling="false"
                      android:functionalTest="false"
-                     android:label="Tests for extractor.com.myapplication"/>
+                     android:label="Tests for br.com.extractor.easyfinance"/>
 </manifest>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <!-- From: file:/Users/rogeriotristao/Projetos/EasyFinance/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-eu-rES/values-eu-rES.xml -->
     <eat-comment/>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Joan orri nagusira"</string>
@@ -15,17 +15,4 @@
     <string msgid="893419373245838918" name="abc_searchview_description_voice">"Ahots bidezko bilaketa"</string>
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Partekatu hauekin"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Partekatu %s erabiltzailearekin"</string>
-    <!-- From: file:/Users/rogeriotristao/Projetos/EasyFinance/app/build/intermediates/exploded-aar/com.wdullaer/materialdatetimepicker/1.3.0/res/values-eu-rES/values.xml -->
-    <eat-comment/>
-    <string msgid="3968620852217927702" name="mdtp_day_picker_description">"Hilabete-ikuspegiko eguna aukeratzeko sareta"</string>
-    <string msgid="6908431551612331381" name="mdtp_deleted_key">"<ns1:g id="KEY">%1$s</ns1:g> ezabatu da"</string>
-    <string msgid="7007948707597430919" name="mdtp_done_label">"Eginda"</string>
-    <string msgid="7586639618712934060" name="mdtp_hour_picker_description">"Ordua aukeratzeko ikuspegi zirkularra"</string>
-    <string msgid="2674929164900463786" name="mdtp_item_is_selected">"<ns1:g id="ITEM">%1$s</ns1:g> hautatu da"</string>
-    <string msgid="6024811202872705251" name="mdtp_minute_picker_description">"Minutuak aukeratzeko ikuspegi zirkularra"</string>
-    <string msgid="3973338219107019769" name="mdtp_select_day">"Hautatu hilabetea eta eguna"</string>
-    <string msgid="7651068754188418859" name="mdtp_select_hours">"Hautatu orduak"</string>
-    <string msgid="8327182090226828481" name="mdtp_select_minutes">"Hautatu minutuak"</string>
-    <string msgid="2603330600102539372" name="mdtp_select_year">"Hautatu urtea"</string>
-    <string msgid="6963340404644587098" name="mdtp_year_picker_description">"Urteen zerrenda"</string>
 </resources>
