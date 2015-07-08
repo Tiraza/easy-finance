@@ -20,9 +20,7 @@ public abstract class ListEntityFragment<T extends EntityCRUDFragment> extends F
         Class<T> clazz = ((Class) ((ParameterizedType) getClass().getGenericSuperclass())
                 .getActualTypeArguments()[0]);
         try {
-            if (crudEntityFragment == null) {
-                crudEntityFragment = clazz.newInstance();
-            }
+            crudEntityFragment = clazz.newInstance();
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.replace(((ViewGroup) getView().getParent()).getId(),
                     crudEntityFragment);

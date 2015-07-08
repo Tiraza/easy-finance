@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import java.lang.reflect.ParameterizedType;
 
-import br.com.extractor.easyfinance.ui.CallbackCRUDFragment;
 import io.realm.Realm;
 import io.realm.RealmObject;
 
@@ -15,7 +14,6 @@ public abstract class EntityCRUDFragment<T extends RealmObject> extends Fragment
 
     protected T entity;
     protected Realm realm;
-    private Class<T> clazz;
 
     @Override
     public void onDestroyView() {
@@ -26,7 +24,7 @@ public abstract class EntityCRUDFragment<T extends RealmObject> extends Fragment
 
     @Override
     public void setClickedView(View viewById) {
-        clazz = ((Class) ((ParameterizedType) getClass().getGenericSuperclass())
+        Class<T> clazz = ((Class) ((ParameterizedType) getClass().getGenericSuperclass())
                 .getActualTypeArguments()[0]);
         String id = ((TextView) viewById).getText().toString();
         realm = Realm.getDefaultInstance();

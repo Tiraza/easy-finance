@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="?attr/actionBarSize">
+    android:padding="16dp">
 
+    <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
 
+        <EditText
+            android:id="@+id/edtDescricaoDespesa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/descricao"
+            android:inputType="textCapSentences"/>
+
+    </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
+
+    <Spinner
+        android:id="@+id/spnTipoDespesa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"/>
+
+    <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/edtValorDespesa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/valor"
+            android:inputType="numberDecimal"/>
+
+    </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
+
+    <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/edtDataDespesa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/data"/>
+
+    </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
 
 </LinearLayout>
