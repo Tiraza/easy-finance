@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.ui.ListEntityFragment;
-import br.com.extractor.easyfinance.ui.despesa.adapter.DespesasAdapter;
+import br.com.extractor.easyfinance.ui.adapter.DespesasAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

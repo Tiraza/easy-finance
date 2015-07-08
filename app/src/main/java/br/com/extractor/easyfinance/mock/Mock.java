@@ -15,7 +15,7 @@ import io.realm.RealmResults;
 
 public class Mock {
 
-    private Realm realm;
+    private final Realm realm;
 
     public Mock() {
         realm = Realm.getDefaultInstance();
