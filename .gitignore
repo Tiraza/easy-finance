@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+local.properties
+Easy Finance.iml
+gradlew.bat
+gradlew
+gradle
+build
+.idea
+.gradle
+app/app.iml
