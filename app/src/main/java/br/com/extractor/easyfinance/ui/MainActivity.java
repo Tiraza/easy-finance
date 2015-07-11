@@ -2,11 +2,13 @@ package br.com.extractor.easyfinance.ui;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
@@ -33,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
+    private ActionBarDrawerToggle drawerToggle;
     private SparseArray<Fragmento> mapFragmento;
     private FragmentManager fragmentManager;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -60,9 +81,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);
-        final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
+        actionBar = getSupportActionBar();
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_drawer_open, R
+                .string.nav_drawer_close);
+        drawerLayout.setDrawerListener(drawerToggle);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void initMapFragmentos() {
@@ -96,17 +120,20 @@ public class MainActivity extends AppCompatActivity {
         Fragmento fragmento = mapFragmento.get(itemId);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_container, fragmento.getFragment());
-        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        getSupportActionBar().setTitle(fragmento.getTitle());
+        actionBar.setTitle(fragmento.getTitle());
     }
 
     @Override
     public void onBackPressed() {
-        if (fragmentManager.getBackStackEntryCount() > 2) {
-            fragmentManager.popBackStack();
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawers();
         } else {
-            super.onBackPressed();
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                fragmentManager.popBackStack();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 

@@ -37,10 +37,19 @@ public class Mock {
 
         for (int i = 0; i < 100; i++) {
             Receita receita = new Receita();
-            receita.setValor(getRandomPrice());
+            receita.setValorPago(getRandomPrice());
             receita.setTipo(getTipo(listTipoReceita));
             receita.setDescricao("Receita " + i);
-            receita.setData(getRandomDate());
+            receita.setDataPaga(getRandomDate());
+            if (i % 2 == 0) {
+                receita.setDataVencimento(receita.getDataPaga());
+            } else {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(receita.getDataPaga());
+                calendar.set(Calendar.YEAR, 2016);
+                calendar.set(Calendar.DAY_OF_YEAR, 365 % i);
+                receita.setDataVencimento(calendar.getTime());
+            }
             receitas.add(receita);
         }
 
@@ -62,10 +71,19 @@ public class Mock {
 
         for (int i = 0; i < 100; i++) {
             Despesa despesa = new Despesa();
-            despesa.setValor(getRandomPrice());
+            despesa.setValorPago(getRandomPrice());
             despesa.setTipo(getTipo(listTipoDespesa));
             despesa.setDescricao("Despesa " + i);
-            despesa.setData(getRandomDate());
+            despesa.setDataPaga(getRandomDate());
+            if (i % 2 == 0) {
+                despesa.setDataVencimento(despesa.getDataPaga());
+            } else {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(despesa.getDataPaga());
+                calendar.set(Calendar.YEAR, 2016);
+                calendar.set(Calendar.DAY_OF_YEAR, 365 % i);
+                despesa.setDataVencimento(calendar.getTime());
+            }
             despesas.add(despesa);
         }
 

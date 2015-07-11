@@ -6,14 +6,15 @@ import java.util.UUID;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Receita extends RealmObject {
+public class Receita extends RealmObject implements Titulo {
 
     @PrimaryKey
     private String id;
     private Tipo tipo;
     private String descricao;
-    private Date data;
-    private double valor;
+    private Date dataPaga;
+    private Date dataVencimento;
+    private double valorPago;
 
     public Receita() {
         this.id = UUID.randomUUID().toString();
@@ -43,20 +44,28 @@ public class Receita extends RealmObject {
         this.descricao = descricao;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataPaga() {
+        return dataPaga;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataPaga(Date dataPaga) {
+        this.dataPaga = dataPaga;
     }
 
-    public double getValor() {
-        return valor;
+    public Date getDataVencimento() {
+        return dataVencimento;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setDataVencimento(Date dataVencimento) {
+        this.dataVencimento = dataVencimento;
+    }
+
+    public double getValorPago() {
+        return valorPago;
+    }
+
+    public void setValorPago(double valorPago) {
+        this.valorPago = valorPago;
     }
 
 }

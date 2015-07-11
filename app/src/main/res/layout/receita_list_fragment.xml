@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,10 +12,11 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/nova_receita"
-        style="@style/FloatActionButtonBottomLeft"
+        style="@style/FloatActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/ic_plus"/>
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_plus"
+        app:layout_anchor="@id/list_receitas"/>
 
 </FrameLayout>

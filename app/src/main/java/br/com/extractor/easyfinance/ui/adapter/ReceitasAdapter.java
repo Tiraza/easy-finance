@@ -38,11 +38,12 @@ public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolderReceitas holder, int position) {
-        Receita despesa = listReceitas.get(position);
-        holder.txtDescricao.setText(despesa.getDescricao());
-        holder.txtData.setText(SimpleDateFormat.getDateInstance().format(despesa.getData()));
-        holder.txtValor.setText(numberFormat.format(despesa.getValor()));
-        holder.txtId.setText(despesa.getId());
+        Receita receita = listReceitas.get(position);
+        holder.txtDescricao.setText(receita.getDescricao());
+        holder.txtData.setText(SimpleDateFormat.getDateInstance().format(receita.getDataPaga()));
+        holder.txtValor.setText(numberFormat.format(receita.getValorPago()));
+        holder.txtId.setText(receita.getId());
+        holder.txtTipo.setText(receita.getTipo().getDescricao());
     }
 
     @Override
@@ -56,6 +57,7 @@ public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.ViewHo
         protected final TextView txtData;
         protected final TextView txtValor;
         protected final TextView txtId;
+        protected final TextView txtTipo;
 
         public ViewHolderReceitas(View itemView) {
             super(itemView);
@@ -63,6 +65,7 @@ public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.ViewHo
             txtData = (TextView) itemView.findViewById(R.id.txtData);
             txtValor = (TextView) itemView.findViewById(R.id.txtValor);
             txtId = (TextView) itemView.findViewById(R.id.txtId);
+            txtTipo = (TextView) itemView.findViewById(R.id.txtTipo);
         }
 
     }

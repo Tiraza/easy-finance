@@ -1,6 +1,7 @@
 package br.com.extractor.easyfinance.ui.despesa;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,11 +13,15 @@ import br.com.extractor.easyfinance.arquitetura.ui.ListEntityFragment;
 import br.com.extractor.easyfinance.ui.adapter.DespesasAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DespesaListFragment extends ListEntityFragment<DespesaEntityCRUDFragment> {
 
     @Bind(R.id.list_despesas)
     RecyclerView listDespesas;
+
+    @Bind(R.id.nova_despesa)
+    FloatingActionButton novaDespesa;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,6 +30,11 @@ public class DespesaListFragment extends ListEntityFragment<DespesaEntityCRUDFra
         listDespesas.setLayoutManager(new LinearLayoutManager(listDespesas.getContext()));
         listDespesas.setAdapter(new DespesasAdapter(this, this));
         return rootView;
+    }
+
+    @OnClick(R.id.nova_despesa)
+    public void onClickNovaDespesa(View view) {
+        onClick(view);
     }
 
 }

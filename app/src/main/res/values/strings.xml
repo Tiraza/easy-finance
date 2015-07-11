@@ -1,18 +1,37 @@
 <resources>
     <string name="app_name">Easy Finance</string>
-    <string name="excluir">Excluir</string>
+
+    <!-- Acessibilidade -->
+    <string name="nav_drawer_close">Fechando menu</string>
+    <string name="nav_drawer_open">Abrindo menu</string>
+
+    <!-- Navegação -->
     <string name="novo">Novo</string>
     <string name="salvar">Salvar</string>
-    <string name="tipo">Tipo</string>
+    <string name="excluir">Excluir</string>
+    <string name="alterar">Alterar</string>
     <string name="despesas">Despesas</string>
     <string name="receitas">Receitas</string>
     <string name="home">Home</string>
     <string name="configuracoes">Configurações</string>
     <string name="sobre">Sobre</string>
-    <string name="descricao">Descrição</string>
-    <string name="data">Data</string>
-    <string name="valor">Valor</string>
+    <string name="nome_usuario">Nome do Usuário</string>
+
+    <!-- Referente ao modelo de título de despesa -->
+    <string name="tipo_despesa">Tipo da Despesa</string>
+    <string name="data_despesa">Data da Despesa</string>
+    <string name="valor_despesa">Valor da Despesa</string>
+    <string name="data_vencimento_despesa">Data de vencimento da Despesa</string>
+    <string name="descricao_despesa">Descrição da Despesa</string>
+
+    <!-- Referente ao modelo de título de receita -->
+    <string name="tipo_receita">Tipo da Receita</string>
+    <string name="data_receita">Data da Receita</string>
+    <string name="valor_receita">Valor da Receita</string>
+    <string name="data_vencimento_receita">Data de vencimento da Receita</string>
+    <string name="descricao_receita">Descrição da Receita</string>
+
+    <!-- Referente aos formulários -->
     <string name="campo_obrigatorio">Preenchimento Obrigatório</string>
-    <string name="username">Nome do Usuário</string>
-    <string name="dialog_escolher_item">Escolha um item abaixo</string>
+
 </resources>

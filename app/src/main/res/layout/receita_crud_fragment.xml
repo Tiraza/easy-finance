@@ -1,57 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:errorEnabled="true">
+        android:orientation="vertical"
+        android:padding="8dp">
 
-        <EditText
-            android:id="@+id/edtDescricaoReceita"
+        <Spinner
+            android:id="@+id/spnTipoReceita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/descricao"
-            android:inputType="textCapSentences"/>
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:spinnerMode="dialog"/>
 
-    </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
-
-    <Spinner
-        android:id="@+id/spnTipoReceita"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dialog"/>
-
-    <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true">
-
-        <EditText
-            android:id="@+id/edtValorReceita"
+        <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/valor"
-            android:inputType="numberDecimal"/>
+            app:errorEnabled="true">
 
-    </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
+            <EditText
+                android:id="@+id/edtDescricaoReceita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/descricao_receita"
+                android:inputType="textCapSentences"/>
 
-    <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true">
+        </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
 
-        <EditText
-            android:id="@+id/edtDataReceita"
+        <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/data"/>
+            app:errorEnabled="true">
 
-    </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
+            <EditText
+                android:id="@+id/edtValorReceita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/valor_receita"
+                android:inputType="number|numberDecimal|numberSigned"/>
 
-</LinearLayout>
+        </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
+
+        <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true">
+
+            <EditText
+                android:id="@+id/edtDataReceita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/data_receita"
+                android:inputType="date"/>
+
+        </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
+
+        <br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true">
+
+            <EditText
+                android:id="@+id/edtDataVencimentoReceita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/data_vencimento_receita"
+                android:inputType="date"/>
+
+        </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/salvar_receita"
+            style="@style/FloatActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/ic_done"/>
+
+    </LinearLayout>
+
+</ScrollView>

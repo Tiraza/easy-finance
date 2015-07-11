@@ -8,8 +8,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.ui.EntityCRUDFragment;
@@ -18,9 +22,10 @@ import br.com.extractor.easyfinance.model.Tipo;
 import br.com.extractor.easyfinance.ui.adapter.TipoRealmAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.realm.RealmResults;
 
-public class ReceitaEntityCRUDFragment extends EntityCRUDFragment<Receita> {
+public class ReceitaEntityCRUDFragment extends EntityCRUDFragment<Receita> implements DatePickerDialog.OnDateSetListener {
 
     @Bind(R.id.spnTipoReceita)
     Spinner spnTipoReceita;
@@ -32,7 +37,12 @@ public class ReceitaEntityCRUDFragment extends EntityCRUDFragment<Receita> {
     EditText edtValorReceita;
 
     @Bind(R.id.edtDataReceita)
-    EditText edtDataReceita;
+    EditText edtDataReceitaPaga;
+
+    @Bind(R.id.edtDataVencimentoReceita)
+    EditText edtDataVencimentoReceita;
+
+    private EditText edtData;
 
     @Nullable
     @Override
@@ -45,20 +55,87 @@ public class ReceitaEntityCRUDFragment extends EntityCRUDFragment<Receita> {
         spnTipoReceita.setAdapter(adapter);
 
         if (entity != null) {
-            int position = 0;
-            for (Tipo tipo : list) {
-                if (tipo.getId().equals(entity.getTipo().getId())) {
-                    break;
-                }
-                position++;
-            }
-            spnTipoReceita.setSelection(position, true);
+            spnTipoReceita.setSelection(list.lastIndexOf(entity.getTipo()) - 1, true);
             edtDescricaoReceita.setText(entity.getDescricao());
-            edtValorReceita.setText(NumberFormat.getCurrencyInstance().format(entity.getValor()));
-            edtDataReceita.setText(SimpleDateFormat.getDateInstance().format(entity.getData()));
+
+            edtValorReceita.setHint(getActivity().getResources().getString(R.string
+                    .valor_receita) + " em (" + NumberFormat.getCurrencyInstance().getCurrency()
+                    .getSymbol() + ")");
+
+            edtValorReceita.setText(String.valueOf(entity.getValorPago()));
+
+            Date dataPaga = entity.getDataPaga();
+            Date dataVencimento = entity.getDataVencimento();
+
+            if (dataPaga == null) {
+                dataPaga = new Date();
+            }
+
+            if (dataVencimento == null) {
+                dataVencimento = new Date();
+            }
+
+            edtDataReceitaPaga.setText(SimpleDateFormat.getDateInstance().format(dataPaga));
+            edtDataVencimentoReceita.setText(SimpleDateFormat.getDateInstance().format(dataVencimento));
+
+        } else {
+            entity = new Receita();
         }
 
         return rootView;
+    }
+
+    @OnClick(R.id.salvar_receita)
+    public void onClickSalvarReceita() {
+        try {
+
+            if (!"".equals(edtDataVencimentoReceita.getText().toString())) {
+                entity.setDataVencimento(SimpleDateFormat.getDateInstance().parse
+                        (edtDataVencimentoReceita.getText().toString()));
+            }
+
+            if (!"".equals(edtDataReceitaPaga.getText().toString())) {
+                entity.setDataPaga(SimpleDateFormat.getDateInstance().parse(edtDataReceitaPaga.getText()
+                        .toString()));
+            }
+
+            entity.setValorPago(Math.floor(Double.valueOf(edtValorReceita.getText().toString()) * 100) / 100);
+            entity.setDescricao(edtDescricaoReceita.getText().toString());
+            entity.setTipo((Tipo) spnTipoReceita.getSelectedItem());
+
+            realm.commitTransaction();
+            getFragmentManager().popBackStack();
+        } catch (Exception e) {
+            throw new RuntimeException("Parser exception", e);
+        }
+    }
+
+    @OnClick({R.id.edtDataVencimentoReceita, R.id.edtDataReceita})
+    public void onClickDataVencimentoDespesa(View view) {
+        edtData = (EditText) view;
+        Calendar calendar = Calendar.getInstance();
+
+        if (entity.getDataVencimento() != null) {
+            calendar.setTime(entity.getDataVencimento());
+        }
+
+        int ano = calendar.get(Calendar.YEAR);
+        int mes = calendar.get(Calendar.MONTH);
+        int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dpd = DatePickerDialog.newInstance(this, ano, mes, dia);
+
+        dpd.setThemeDark(true);
+        dpd.show(getFragmentManager(), "Datepickerdialog");
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog datePickerDialog, int ano, int mes, int dia) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, ano);
+        calendar.set(Calendar.MONTH, mes);
+        calendar.set(Calendar.DAY_OF_MONTH, dia);
+        edtData.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
     }
 
 }

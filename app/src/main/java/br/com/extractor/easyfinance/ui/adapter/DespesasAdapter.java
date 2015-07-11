@@ -40,9 +40,10 @@ public class DespesasAdapter extends RecyclerView.Adapter<DespesasAdapter.ViewHo
     public void onBindViewHolder(ViewHolderDespesas holder, int position) {
         Despesa despesa = listDespesas.get(position);
         holder.txtDescricao.setText(despesa.getDescricao());
-        holder.txtData.setText(SimpleDateFormat.getDateInstance().format(despesa.getData()));
-        holder.txtValor.setText(numberFormat.format(despesa.getValor()));
+        holder.txtData.setText(SimpleDateFormat.getDateInstance().format(despesa.getDataPaga()));
+        holder.txtValor.setText(numberFormat.format(despesa.getValorPago()));
         holder.txtId.setText(despesa.getId());
+        holder.txtTipo.setText(despesa.getTipo().getDescricao());
     }
 
     @Override
@@ -56,6 +57,7 @@ public class DespesasAdapter extends RecyclerView.Adapter<DespesasAdapter.ViewHo
         protected final TextView txtData;
         protected final TextView txtValor;
         protected final TextView txtId;
+        protected final TextView txtTipo;
 
         public ViewHolderDespesas(View itemView) {
             super(itemView);
@@ -63,6 +65,7 @@ public class DespesasAdapter extends RecyclerView.Adapter<DespesasAdapter.ViewHo
             txtData = (TextView) itemView.findViewById(R.id.txtData);
             txtValor = (TextView) itemView.findViewById(R.id.txtValor);
             txtId = (TextView) itemView.findViewById(R.id.txtId);
+            txtTipo = (TextView) itemView.findViewById(R.id.txtTipo);
         }
 
     }
