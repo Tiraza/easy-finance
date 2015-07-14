@@ -57,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/data_despesa"
+                android:focusable="false"
                 android:inputType="date"/>
 
         </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
@@ -71,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/data_vencimento_despesa"
+                android:focusable="false"
                 android:inputType="date"/>
 
         </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>

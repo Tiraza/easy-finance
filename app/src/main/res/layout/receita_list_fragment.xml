@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_plus"
-        app:layout_anchor="@id/list_receitas"/>
+        app:layout_anchor="@id/list_receitas"
+        app:backgroundTint="@color/colorPrimary"/>
 
 </FrameLayout>

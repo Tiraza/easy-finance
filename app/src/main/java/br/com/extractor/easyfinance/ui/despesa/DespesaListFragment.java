@@ -27,8 +27,10 @@ public class DespesaListFragment extends ListEntityFragment<DespesaEntityCRUDFra
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.despesa_list_fragment, container, false);
         ButterKnife.bind(this, rootView);
+
         listDespesas.setLayoutManager(new LinearLayoutManager(listDespesas.getContext()));
         listDespesas.setAdapter(new DespesasAdapter(this, this));
+
         return rootView;
     }
 

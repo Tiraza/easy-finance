@@ -2,10 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:padding="8dp">
 
-    <lecho.lib.hellocharts.view.LineChartView
-        android:id="@+id/line_chart_view"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/relacao_receita_despsa"
+        android:id="@+id/textView2"
+        android:layout_gravity="center"/>
+
+    <lecho.lib.hellocharts.view.PieChartView
+        android:id="@+id/pie_chart_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

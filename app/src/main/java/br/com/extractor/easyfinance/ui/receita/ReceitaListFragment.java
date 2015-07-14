@@ -27,8 +27,10 @@ public class ReceitaListFragment extends ListEntityFragment<ReceitaEntityCRUDFra
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.receita_list_fragment, container, false);
         ButterKnife.bind(this, rootView);
+
         listReceitas.setLayoutManager(new LinearLayoutManager(listReceitas.getContext()));
         listReceitas.setAdapter(new ReceitasAdapter(this, this));
+
         return rootView;
     }
 

@@ -124,8 +124,7 @@ public class ReceitaEntityCRUDFragment extends EntityCRUDFragment<Receita> imple
         int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog dpd = DatePickerDialog.newInstance(this, ano, mes, dia);
-
-        dpd.setThemeDark(true);
+        dpd.setThemeDark(false);
         dpd.show(getFragmentManager(), "Datepickerdialog");
     }
 

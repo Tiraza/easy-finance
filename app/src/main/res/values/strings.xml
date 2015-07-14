@@ -33,5 +33,6 @@
 
     <!-- Referente aos formulários -->
     <string name="campo_obrigatorio">Preenchimento Obrigatório</string>
+    <string name="relacao_receita_despsa">Relação Receitas e Despesas</string>
 
 </resources>

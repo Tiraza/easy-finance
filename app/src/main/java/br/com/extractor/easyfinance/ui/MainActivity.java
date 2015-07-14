@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         actionBar = getSupportActionBar();
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_drawer_open, R
                 .string.nav_drawer_close);

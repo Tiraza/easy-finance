@@ -1,7 +1,6 @@
 package br.com.extractor.easyfinance.ui.home;
 
 import android.app.Fragment;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,41 +10,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.extractor.easyfinance.R;
+import br.com.extractor.easyfinance.model.Despesa;
+import br.com.extractor.easyfinance.model.Receita;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.view.LineChartView;
+import io.realm.Realm;
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.util.ChartUtils;
+import lecho.lib.hellocharts.view.PieChartView;
 
 public class HomeFragment extends Fragment {
 
-    @Bind(R.id.line_chart_view)
-    LineChartView lineChartView;
+    @Bind(R.id.pie_chart_view)
+    PieChartView pieChartView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.home_fragment, container, false);
         ButterKnife.bind(this, rootView);
 
-        List<PointValue> values = new ArrayList<>();
+        List<SliceValue> pieValues = new ArrayList<>();
 
-        values.add(new PointValue(0, 2));
-        values.add(new PointValue(1, 4));
-        values.add(new PointValue(2, 3));
-        values.add(new PointValue(3, 4));
+        double valorTotalDespesas = Realm.getDefaultInstance().where(Despesa.class).sumDouble("valorPago");
+        SliceValue valueDespesas = new SliceValue((float) valorTotalDespesas, getResources().getColor(R.color.gr_despesas));
+        valueDespesas.setLabel(getString(R.string.despesas));
+        pieValues.add(valueDespesas);
 
-        Line line = new Line(values).setColor(Color.BLUE).setCubic(true);
-        List<Line> lines = new ArrayList<>();
-        lines.add(line);
+        double valorTotalReceitas = Realm.getDefaultInstance().where(Receita.class).sumDouble("valorPago");
+        SliceValue valueReceitas = new SliceValue((float) valorTotalReceitas, getResources().getColor(R.color.gr_receitas));
+        valueReceitas.setLabel(getString(R.string.receitas));
+        pieValues.add(valueReceitas);
 
-        LineChartData data = new LineChartData();
-        data.setLines(lines);
+        PieChartData pieData = new PieChartData(pieValues);
+        pieData.setHasLabels(true);
+        pieData.setHasLabelsOnlyForSelected(false);
+        pieData.setHasLabelsOutside(false);
+        pieData.setHasCenterCircle(true);
 
-        lineChartView.setLineChartData(data);
+        pieChartView.setPieChartData(pieData);
 
         return rootView;
     }
-
 }
