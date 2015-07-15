@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
@@ -87,25 +88,44 @@ public class DespesaEntityCRUDFragment extends EntityCRUDFragment<Despesa> imple
 
     @OnClick(R.id.salvar_despesa)
     public void onClickSalvarDespesa() {
+        Tipo tipo = (Tipo) spnTipoDespesa.getSelectedItem();
+        String dataVencimento = edtDataVencimentoDespesa.getText().toString();
+        String dataPaga = edtDataDespesaPaga.getText().toString();
+        String valorPago = edtValorDespesa.getText().toString();
+        String descricao = edtDescricaoDespesa.getText().toString();
+
         try {
 
-            if (!"".equals(edtDataVencimentoDespesa.getText().toString())) {
-                entity.setDataVencimento(SimpleDateFormat.getDateInstance().parse
-                        (edtDataVencimentoDespesa.getText().toString()));
+            if (!"".equals(dataVencimento)) {
+                entity.setDataVencimento(SimpleDateFormat.getDateInstance().parse(dataVencimento));
             }
 
-            if (!"".equals(edtDataDespesaPaga.getText().toString())) {
-                entity.setDataPaga(SimpleDateFormat.getDateInstance().parse(edtDataDespesaPaga.getText()
-                        .toString()));
+            if (!"".equals(dataPaga)) {
+                entity.setDataPaga(SimpleDateFormat.getDateInstance().parse(dataPaga));
             }
 
-            entity.setValorPago(Math.floor(Double.valueOf(edtValorDespesa.getText().toString()) * 100)
-                    / 100);
-            entity.setDescricao(edtDescricaoDespesa.getText().toString());
-            entity.setTipo((Tipo) spnTipoDespesa.getSelectedItem());
+            if ("".equals(valorPago)) {
+                edtValorDespesa.setError("É necessário informar um valor");
+            } else {
+                if ("".equals(descricao)) {
+                    edtDescricaoDespesa.setError("É necessário informar a descrição");
+                } else {
+                    if (tipo == null) {
+                        Toast.makeText(getActivity(), "É necessário informar o tipo", Toast
+                                .LENGTH_LONG).show();
+                    } else {
+                        entity.setValorPago(Math.floor(Double.valueOf(edtValorDespesa.getText()
+                                .toString()) * 100) / 100);
+                        entity.setDescricao(descricao);
 
-            realm.commitTransaction();
-            getFragmentManager().popBackStack();
+                        entity.setTipo(tipo);
+
+                        realm.commitTransaction();
+                        getFragmentManager().popBackStack();
+                    }
+                }
+            }
+
         } catch (Exception e) {
             throw new RuntimeException("Parser exception", e);
         }

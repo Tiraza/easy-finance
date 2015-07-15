@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
@@ -87,27 +88,48 @@ public class ReceitaEntityCRUDFragment extends EntityCRUDFragment<Receita> imple
 
     @OnClick(R.id.salvar_receita)
     public void onClickSalvarReceita() {
+
+        Tipo tipo = (Tipo) spnTipoReceita.getSelectedItem();
+        String dataVencimento = edtDataVencimentoReceita.getText().toString();
+        String dataPaga = edtDataReceitaPaga.getText().toString();
+        String valorPago = edtValorReceita.getText().toString();
+        String descricao = edtDescricaoReceita.getText().toString();
+
         try {
 
-            if (!"".equals(edtDataVencimentoReceita.getText().toString())) {
-                entity.setDataVencimento(SimpleDateFormat.getDateInstance().parse
-                        (edtDataVencimentoReceita.getText().toString()));
+            if (!"".equals(dataVencimento)) {
+                entity.setDataVencimento(SimpleDateFormat.getDateInstance().parse(dataVencimento));
             }
 
-            if (!"".equals(edtDataReceitaPaga.getText().toString())) {
-                entity.setDataPaga(SimpleDateFormat.getDateInstance().parse(edtDataReceitaPaga.getText()
-                        .toString()));
+            if (!"".equals(dataPaga)) {
+                entity.setDataPaga(SimpleDateFormat.getDateInstance().parse(dataPaga));
             }
 
-            entity.setValorPago(Math.floor(Double.valueOf(edtValorReceita.getText().toString()) * 100) / 100);
-            entity.setDescricao(edtDescricaoReceita.getText().toString());
-            entity.setTipo((Tipo) spnTipoReceita.getSelectedItem());
+            if ("".equals(valorPago)) {
+                edtValorReceita.setError("É necessário informar um valor");
+            } else {
+                if ("".equals(descricao)) {
+                    edtDescricaoReceita.setError("É necessário informar a descrição");
+                } else {
+                    if (tipo == null) {
+                        Toast.makeText(getActivity(), "É necessário informar o tipo", Toast
+                                .LENGTH_LONG).show();
+                    } else {
+                        entity.setValorPago(Math.floor(Double.valueOf(edtValorReceita.getText().toString()) * 100) / 100);
+                        entity.setDescricao(descricao);
 
-            realm.commitTransaction();
-            getFragmentManager().popBackStack();
+                        entity.setTipo(tipo);
+
+                        realm.commitTransaction();
+                        getFragmentManager().popBackStack();
+                    }
+                }
+            }
+
         } catch (Exception e) {
             throw new RuntimeException("Parser exception", e);
         }
+
     }
 
     @OnClick({R.id.edtDataVencimentoReceita, R.id.edtDataReceita})
