@@ -20,27 +20,27 @@ import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.ui.EntityCRUDFragment;
 import br.com.extractor.easyfinance.model.Receita;
 import br.com.extractor.easyfinance.model.Tipo;
-import br.com.extractor.easyfinance.ui.adapter.TipoRealmAdapter;
+import br.com.extractor.easyfinance.ui.adapter.TipoSpinnerAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.RealmResults;
 
-public class ReceitaEntityCRUDFragment extends EntityCRUDFragment<Receita> implements DatePickerDialog.OnDateSetListener {
+public class ReceitaCRUDFragment extends EntityCRUDFragment<Receita> implements DatePickerDialog.OnDateSetListener {
 
-    @Bind(R.id.spnTipoReceita)
+    @Bind(R.id.spn_tipo_receita)
     Spinner spnTipoReceita;
 
-    @Bind(R.id.edtDescricaoReceita)
+    @Bind(R.id.edt_descricao_receita)
     EditText edtDescricaoReceita;
 
-    @Bind(R.id.edtValorReceita)
+    @Bind(R.id.edt_valor_receita)
     EditText edtValorReceita;
 
-    @Bind(R.id.edtDataReceita)
+    @Bind(R.id.edt_data_receita)
     EditText edtDataReceitaPaga;
 
-    @Bind(R.id.edtDataVencimentoReceita)
+    @Bind(R.id.edt_data_vencimento_receita)
     EditText edtDataVencimentoReceita;
 
     private EditText edtData;
@@ -51,44 +51,66 @@ public class ReceitaEntityCRUDFragment extends EntityCRUDFragment<Receita> imple
         View rootView = inflater.inflate(R.layout.receita_crud_fragment, container, false);
         ButterKnife.bind(this, rootView);
 
-        RealmResults<Tipo> list = realm.where(Tipo.class).notEqualTo("tipo", 0).findAll();
-        TipoRealmAdapter adapter = new TipoRealmAdapter(getActivity(), list);
+        RealmResults<Tipo> list = realm.where(Tipo.class).notEqualTo("categoria", 0).findAll();
+        TipoSpinnerAdapter adapter = new TipoSpinnerAdapter(getActivity(), list);
         spnTipoReceita.setAdapter(adapter);
 
-        if (entity != null) {
-            spnTipoReceita.setSelection(list.lastIndexOf(entity.getTipo()) - 1, true);
-            edtDescricaoReceita.setText(entity.getDescricao());
+        spnTipoReceita.setSelection(list.lastIndexOf(entity.getTipo()) - 1, true);
+        edtDescricaoReceita.setText(entity.getDescricao());
 
-            edtValorReceita.setHint(getActivity().getResources().getString(R.string
-                    .valor_receita) + " em (" + NumberFormat.getCurrencyInstance().getCurrency()
-                    .getSymbol() + ")");
+        edtValorReceita.setHint(getActivity().getResources().getString(R.string
+                .valor_receita) + " em (" + NumberFormat.getCurrencyInstance().getCurrency()
+                .getSymbol() + ")");
 
-            edtValorReceita.setText(String.valueOf(entity.getValorPago()));
+        edtValorReceita.setText(String.valueOf(entity.getValorPago()));
 
-            Date dataPaga = entity.getDataPaga();
-            Date dataVencimento = entity.getDataVencimento();
+        Date dataPaga = entity.getDataPaga();
+        Date dataVencimento = entity.getDataVencimento();
 
-            if (dataPaga == null) {
-                dataPaga = new Date();
-            }
-
-            if (dataVencimento == null) {
-                dataVencimento = new Date();
-            }
-
-            edtDataReceitaPaga.setText(SimpleDateFormat.getDateInstance().format(dataPaga));
-            edtDataVencimentoReceita.setText(SimpleDateFormat.getDateInstance().format(dataVencimento));
-
-        } else {
-            entity = new Receita();
+        if (dataPaga == null) {
+            dataPaga = new Date();
         }
+
+        if (dataVencimento == null) {
+            dataVencimento = new Date();
+        }
+
+        edtDataReceitaPaga.setText(SimpleDateFormat.getDateInstance().format(dataPaga));
+        edtDataVencimentoReceita.setText(SimpleDateFormat.getDateInstance().format(dataVencimento));
 
         return rootView;
     }
 
-    @OnClick(R.id.salvar_receita)
-    public void onClickSalvarReceita() {
+    @OnClick({R.id.edt_data_vencimento_receita, R.id.edt_data_receita})
+    public void onClickDataVencimentoDespesa(View view) {
+        edtData = (EditText) view;
+        Calendar calendar = Calendar.getInstance();
 
+        if (entity.getDataVencimento() != null) {
+            calendar.setTime(entity.getDataVencimento());
+        }
+
+        int ano = calendar.get(Calendar.YEAR);
+        int mes = calendar.get(Calendar.MONTH);
+        int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dpd = DatePickerDialog.newInstance(this, ano, mes, dia);
+        dpd.setThemeDark(false);
+        dpd.show(getFragmentManager(), "Datepickerdialog");
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog datePickerDialog, int ano, int mes, int dia) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, ano);
+        calendar.set(Calendar.MONTH, mes);
+        calendar.set(Calendar.DAY_OF_MONTH, dia);
+        edtData.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
+    }
+
+    @OnClick(R.id.salvar_receita)
+    @Override
+    public void salvar(View view) {
         Tipo tipo = (Tipo) spnTipoReceita.getSelectedItem();
         String dataVencimento = edtDataVencimentoReceita.getText().toString();
         String dataPaga = edtDataReceitaPaga.getText().toString();
@@ -129,34 +151,6 @@ public class ReceitaEntityCRUDFragment extends EntityCRUDFragment<Receita> imple
         } catch (Exception e) {
             throw new RuntimeException("Parser exception", e);
         }
-
-    }
-
-    @OnClick({R.id.edtDataVencimentoReceita, R.id.edtDataReceita})
-    public void onClickDataVencimentoDespesa(View view) {
-        edtData = (EditText) view;
-        Calendar calendar = Calendar.getInstance();
-
-        if (entity.getDataVencimento() != null) {
-            calendar.setTime(entity.getDataVencimento());
-        }
-
-        int ano = calendar.get(Calendar.YEAR);
-        int mes = calendar.get(Calendar.MONTH);
-        int dia = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dpd = DatePickerDialog.newInstance(this, ano, mes, dia);
-        dpd.setThemeDark(false);
-        dpd.show(getFragmentManager(), "Datepickerdialog");
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog datePickerDialog, int ano, int mes, int dia) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, ano);
-        calendar.set(Calendar.MONTH, mes);
-        calendar.set(Calendar.DAY_OF_MONTH, dia);
-        edtData.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
     }
 
 }

@@ -9,7 +9,6 @@ import java.util.TimerTask;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.repository.Configuration;
-import br.com.extractor.easyfinance.mock.Mock;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,7 +18,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         new Configuration(this).configure();
-        new Mock().mockApplication();
 
         new Timer().schedule(new TimerTask() {
 

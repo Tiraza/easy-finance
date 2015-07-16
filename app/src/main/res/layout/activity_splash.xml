@@ -10,20 +10,20 @@
     tools:context="br.com.extractor.easyfinance.ui.SplashActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/image_view_splash_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/app_name"
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_view_splash_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
         android:textSize="40sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"/>
+        android:textStyle="bold"/>
 
 </LinearLayout>

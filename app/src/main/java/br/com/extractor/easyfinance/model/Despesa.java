@@ -1,7 +1,6 @@
 package br.com.extractor.easyfinance.model;
 
 import java.util.Date;
-import java.util.UUID;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -9,7 +8,7 @@ import io.realm.annotations.PrimaryKey;
 public class Despesa extends RealmObject implements Titulo {
 
     @PrimaryKey
-    private String id;
+    private long id;
     private Tipo tipo;
     private String descricao;
     private Date dataPaga;
@@ -17,14 +16,14 @@ public class Despesa extends RealmObject implements Titulo {
     private double valorPago;
 
     public Despesa() {
-        this.id = UUID.randomUUID().toString();
+        this.id = System.nanoTime();
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

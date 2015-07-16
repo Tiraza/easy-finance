@@ -6,12 +6,12 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_despesas"
+        android:id="@+id/list_tipo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/nova_despesa"
+        android:id="@+id/novo_tipo"
         style="@style/FloatActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

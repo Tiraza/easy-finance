@@ -14,14 +14,14 @@ import br.com.extractor.easyfinance.model.Receita;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.ViewHolderReceitas> {
+public class ReceitasListAdapter extends RecyclerView.Adapter<ReceitasListAdapter.ViewHolderReceitas> {
 
     private final View.OnClickListener itemClickEvent;
     private final View.OnLongClickListener itemLongClickEvent;
     private final RealmResults<Receita> listReceitas;
     private final NumberFormat numberFormat;
 
-    public ReceitasAdapter(View.OnClickListener itemClickEvent, View.OnLongClickListener itemLongClickEvent) {
+    public ReceitasListAdapter(View.OnClickListener itemClickEvent, View.OnLongClickListener itemLongClickEvent) {
         this.itemClickEvent = itemClickEvent;
         this.itemLongClickEvent = itemLongClickEvent;
         this.listReceitas = Realm.getDefaultInstance().where(Receita.class).findAll();
@@ -30,7 +30,8 @@ public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.ViewHo
 
     @Override
     public ViewHolderReceitas onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_listview, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout
+                .receita_item_listview, parent, false);
         view.setOnLongClickListener(itemLongClickEvent);
         view.setOnClickListener(itemClickEvent);
         return new ViewHolderReceitas(view);
@@ -42,7 +43,7 @@ public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.ViewHo
         holder.txtDescricao.setText(receita.getDescricao());
         holder.txtData.setText(SimpleDateFormat.getDateInstance().format(receita.getDataPaga()));
         holder.txtValor.setText(numberFormat.format(receita.getValorPago()));
-        holder.txtId.setText(receita.getId());
+        holder.txtId.setText(String.valueOf(receita.getId()));
         holder.txtTipo.setText(receita.getTipo().getDescricao());
     }
 
@@ -61,11 +62,11 @@ public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.ViewHo
 
         public ViewHolderReceitas(View itemView) {
             super(itemView);
-            txtDescricao = (TextView) itemView.findViewById(R.id.txtDescricao);
-            txtData = (TextView) itemView.findViewById(R.id.txtData);
-            txtValor = (TextView) itemView.findViewById(R.id.txtValor);
-            txtId = (TextView) itemView.findViewById(R.id.txtId);
-            txtTipo = (TextView) itemView.findViewById(R.id.txtTipo);
+            txtDescricao = (TextView) itemView.findViewById(R.id.txt_descricao_receita);
+            txtData = (TextView) itemView.findViewById(R.id.txt_data_receita);
+            txtValor = (TextView) itemView.findViewById(R.id.txt_valor_receita);
+            txtId = (TextView) itemView.findViewById(R.id.txt_id);
+            txtTipo = (TextView) itemView.findViewById(R.id.txt_tipo_receita);
         }
 
     }

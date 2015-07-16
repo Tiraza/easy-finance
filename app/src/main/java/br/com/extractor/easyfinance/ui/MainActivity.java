@@ -21,6 +21,7 @@ import br.com.extractor.easyfinance.ui.despesa.DespesaListFragment;
 import br.com.extractor.easyfinance.ui.home.HomeFragment;
 import br.com.extractor.easyfinance.ui.receita.ReceitaListFragment;
 import br.com.extractor.easyfinance.ui.sobre.SobreFragment;
+import br.com.extractor.easyfinance.ui.tipo.TipoListFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -50,11 +51,6 @@ public class MainActivity extends AppCompatActivity {
         setupToolbar();
         setupDrawerContent();
         changeFragment(R.id.menu_home);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     @Override
@@ -98,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
                     .receitas));
             mapFragmento.put(R.id.menu_despesas, new Fragmento(new DespesaListFragment(), R.string
                     .despesas));
+            mapFragmento.put(R.id.menu_tipo, new Fragmento(new TipoListFragment(), R.string
+                    .tipo));
             mapFragmento.put(R.id.menu_configuracoes, new Fragmento(new ConfiguracoesFragment(),
                     R.string.configuracoes));
             mapFragmento.put(R.id.menu_sobre, new Fragmento(new SobreFragment(), R.string.sobre));

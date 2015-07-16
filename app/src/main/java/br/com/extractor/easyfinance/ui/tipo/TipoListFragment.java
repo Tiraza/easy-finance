@@ -1,4 +1,4 @@
-package br.com.extractor.easyfinance.ui.despesa;
+package br.com.extractor.easyfinance.ui.tipo;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,29 +9,29 @@ import android.view.ViewGroup;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.ui.ListEntityFragment;
-import br.com.extractor.easyfinance.ui.adapter.DespesasListAdapter;
+import br.com.extractor.easyfinance.ui.adapter.TipoListAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class DespesaListFragment extends ListEntityFragment<DespesaCRUDFragment> {
+public class TipoListFragment extends ListEntityFragment<TipoCRUDFragment> {
 
-    @Bind(R.id.list_despesas)
-    RecyclerView listDespesas;
+    @Bind(R.id.list_tipo)
+    RecyclerView listTipos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.despesa_list_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.tipo_list_fragment, container, false);
         ButterKnife.bind(this, rootView);
 
-        listDespesas.setLayoutManager(new LinearLayoutManager(listDespesas.getContext()));
-        listDespesas.setAdapter(new DespesasListAdapter(this, this));
+        listTipos.setLayoutManager(new LinearLayoutManager(listTipos.getContext()));
+        listTipos.setAdapter(new TipoListAdapter(this, this));
 
         return rootView;
     }
 
     @Override
     public int setViewCreateEntity() {
-        return R.id.nova_despesa;
+        return R.id.novo_tipo;
     }
 
 }

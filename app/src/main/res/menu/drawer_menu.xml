@@ -14,6 +14,9 @@
             android:id="@+id/menu_despesas"
             android:icon="@drawable/ic_despesa"
             android:title="@string/despesas"/>
+        <item
+            android:id="@+id/menu_tipo"
+            android:title="@string/tipo"/>
     </group>
 
     <group android:checkableBehavior="single">

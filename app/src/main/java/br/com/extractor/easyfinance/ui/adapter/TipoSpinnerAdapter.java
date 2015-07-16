@@ -10,9 +10,9 @@ import br.com.extractor.easyfinance.model.Tipo;
 import io.realm.RealmBaseAdapter;
 import io.realm.RealmResults;
 
-public class TipoRealmAdapter extends RealmBaseAdapter<Tipo> implements ListAdapter {
+public class TipoSpinnerAdapter extends RealmBaseAdapter<Tipo> implements ListAdapter {
 
-    public TipoRealmAdapter(Context context, RealmResults<Tipo> realmResults) {
+    public TipoSpinnerAdapter(Context context, RealmResults<Tipo> realmResults) {
         super(context, realmResults, true);
     }
 

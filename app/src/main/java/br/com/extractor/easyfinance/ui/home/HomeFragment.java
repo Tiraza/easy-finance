@@ -17,7 +17,6 @@ import butterknife.ButterKnife;
 import io.realm.Realm;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
-import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.PieChartView;
 
 public class HomeFragment extends Fragment {
