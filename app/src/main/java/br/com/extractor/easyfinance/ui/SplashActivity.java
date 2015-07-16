@@ -12,6 +12,8 @@ import br.com.extractor.easyfinance.arquitetura.repository.Configuration;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private Timer timer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,8 +21,9 @@ public class SplashActivity extends AppCompatActivity {
 
         new Configuration(this).configure();
 
-        new Timer().schedule(new TimerTask() {
+        timer = new Timer();
 
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 finish();
@@ -31,4 +34,17 @@ public class SplashActivity extends AppCompatActivity {
         }, 2000);
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        timer.cancel();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
+    }
+
 }
