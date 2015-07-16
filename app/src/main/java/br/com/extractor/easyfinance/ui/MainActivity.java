@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void initMapFragmentos() {
         if (mapFragmento == null) {
             mapFragmento = new SparseArray<>();
-            mapFragmento.put(R.id.menu_home, new Fragmento(new HomeFragment(), R.string.home));
+            mapFragmento.put(R.id.menu_home, new Fragmento(new HomeFragment(), R.string.dashboard));
             mapFragmento.put(R.id.menu_receitas, new Fragmento(new ReceitaListFragment(), R.string
                     .receitas));
             mapFragmento.put(R.id.menu_despesas, new Fragmento(new DespesaListFragment(), R.string

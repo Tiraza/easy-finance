@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="alterar">Change</string>
+    <string name="campo_obrigatorio">Required</string>
+    <string name="configuracoes">Settings</string>
+    <string name="descricao_tipo">Description</string>
+    <string name="excluir">Delete</string>
+    <string name="nav_drawer_close">Closing menu</string>
+    <string name="nav_drawer_open">Opening menu</string>
+    <string name="nome_usuario">Username</string>
+    <string name="novo">New</string>
+    <string name="salvar">Save</string>
+    <string name="sobre">About</string>
+    <string name="tipo">Type</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="despesas">Expenses</string>
+    <string name="data_despesa">Expense date</string>
+    <string name="data_vencimento_despesa">Spending due date</string>
+    <string name="tipo_despesa">Type of expense</string>
+    <string name="valor_despesa">Spending value</string>
+    <string name="valor_receita">Amount of revenue</string>
+    <string name="tipo_receita">Type of income</string>
+    <string name="relacao_receita_despsa">Relation between income and expense</string>
+    <string name="receitas">Incomes</string>
+    <string name="descricao_receita">Description of revenue</string>
+    <string name="descricao_despesa">Description of expense</string>
+    <string name="data_vencimento_receita">Due date revenue</string>
+    <string name="data_receita">Revenue date</string>
+</resources>

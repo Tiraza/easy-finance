@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Easy Finance</string>
+    <string name="app_name" translatable="false">Easy Finance</string>
 
     <!-- Acessibilidade -->
     <string name="nav_drawer_close">Fechando menu</string>
@@ -12,7 +12,7 @@
     <string name="alterar">Alterar</string>
     <string name="despesas">Despesas</string>
     <string name="receitas">Receitas</string>
-    <string name="home">Home</string>
+    <string name="dashboard">Dashboard</string>
     <string name="configuracoes">Configurações</string>
     <string name="sobre">Sobre</string>
     <string name="nome_usuario">Nome do Usuário</string>
