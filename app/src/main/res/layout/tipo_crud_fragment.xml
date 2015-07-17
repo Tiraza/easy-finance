@@ -49,7 +49,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_done"
-        app:backgroundTint="@color/colorPrimary"/>
+        android:src="@drawable/ic_done"/>
 
 </RelativeLayout>

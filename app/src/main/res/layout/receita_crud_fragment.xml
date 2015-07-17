@@ -94,7 +94,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_done"
-        app:backgroundTint="@color/colorPrimary"/>
+        android:src="@drawable/ic_done"/>
 
 </RelativeLayout>

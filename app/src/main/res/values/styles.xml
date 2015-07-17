@@ -12,6 +12,7 @@
         <item name="elevation">6dp</item>
         <item name="borderWidth">1dp</item>
         <item name="pressedTranslationZ">12dp</item>
+        <item name="backgroundTint">@color/colorAccent</item>
     </style>
 
 </resources>
