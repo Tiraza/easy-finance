@@ -3,29 +3,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/menu_home"
+            android:id="@+id/menu_dashboard"
             android:icon="@drawable/ic_home"
             android:title="@string/dashboard"/>
         <item
             android:id="@+id/menu_receitas"
             android:icon="@drawable/ic_receita"
-            android:title="@string/receitas"/>
+            android:title="@string/incomes"/>
         <item
             android:id="@+id/menu_despesas"
             android:icon="@drawable/ic_despesa"
-            android:title="@string/despesas"/>
+            android:title="@string/expenses"/>
         <item
             android:id="@+id/menu_tipo"
-            android:title="@string/tipo"/>
+            android:title="@string/type"/>
     </group>
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_configuracoes"
-            android:title="@string/configuracoes"/>
+            android:title="@string/settings"/>
         <item
             android:id="@+id/menu_sobre"
-            android:title="@string/sobre"/>
+            android:title="@string/about"/>
     </group>
 
 </menu>

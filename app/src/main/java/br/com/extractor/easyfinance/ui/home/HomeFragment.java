@@ -33,12 +33,12 @@ public class HomeFragment extends Fragment {
 
         double valorTotalDespesas = Realm.getDefaultInstance().where(Despesa.class).sumDouble("valorPago");
         SliceValue valueDespesas = new SliceValue((float) valorTotalDespesas, getResources().getColor(R.color.gr_despesas));
-        valueDespesas.setLabel(getString(R.string.despesas));
+        valueDespesas.setLabel(getString(R.string.expenses));
         pieValues.add(valueDespesas);
 
         double valorTotalReceitas = Realm.getDefaultInstance().where(Receita.class).sumDouble("valorPago");
         SliceValue valueReceitas = new SliceValue((float) valorTotalReceitas, getResources().getColor(R.color.gr_receitas));
-        valueReceitas.setLabel(getString(R.string.receitas));
+        valueReceitas.setLabel(getString(R.string.incomes));
         pieValues.add(valueReceitas);
 
         PieChartData pieData = new PieChartData(pieValues);

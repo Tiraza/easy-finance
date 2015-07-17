@@ -9,6 +9,7 @@ import java.util.TimerTask;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.repository.Configuration;
+import br.com.extractor.easyfinance.util.LoadResources;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -32,6 +33,8 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }, 2000);
+
+        LoadResources.loadLicense(this);
 
     }
 

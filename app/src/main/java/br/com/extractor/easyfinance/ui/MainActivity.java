@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         initMapFragmentos();
         setupToolbar();
         setupDrawerContent();
-        changeFragment(R.id.menu_home);
+        changeFragment(R.id.menu_dashboard);
     }
 
     @Override
@@ -89,16 +89,16 @@ public class MainActivity extends AppCompatActivity {
     private void initMapFragmentos() {
         if (mapFragmento == null) {
             mapFragmento = new SparseArray<>();
-            mapFragmento.put(R.id.menu_home, new Fragmento(new HomeFragment(), R.string.dashboard));
+            mapFragmento.put(R.id.menu_dashboard, new Fragmento(new HomeFragment(), R.string.dashboard));
             mapFragmento.put(R.id.menu_receitas, new Fragmento(new ReceitaListFragment(), R.string
-                    .receitas));
+                    .incomes));
             mapFragmento.put(R.id.menu_despesas, new Fragmento(new DespesaListFragment(), R.string
-                    .despesas));
+                    .expenses));
             mapFragmento.put(R.id.menu_tipo, new Fragmento(new TipoListFragment(), R.string
-                    .tipo));
+                    .type));
             mapFragmento.put(R.id.menu_configuracoes, new Fragmento(new ConfiguracoesFragment(),
-                    R.string.configuracoes));
-            mapFragmento.put(R.id.menu_sobre, new Fragmento(new SobreFragment(), R.string.sobre));
+                    R.string.settings));
+            mapFragmento.put(R.id.menu_sobre, new Fragmento(new SobreFragment(), R.string.about));
         }
     }
 

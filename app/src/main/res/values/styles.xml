@@ -15,4 +15,10 @@
         <item name="backgroundTint">@color/colorAccent</item>
     </style>
 
+    <style name="FlatButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/flatButtonTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@null</item>
+    </style>
+
 </resources>

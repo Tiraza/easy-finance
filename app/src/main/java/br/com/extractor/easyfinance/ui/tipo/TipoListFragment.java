@@ -3,7 +3,7 @@ package br.com.extractor.easyfinance.ui.tipo;
 import android.support.v7.widget.RecyclerView;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.arquitetura.ui.ListEntityFragment;
+import br.com.extractor.easyfinance.arquitetura.controller.ListEntityFragment;
 import br.com.extractor.easyfinance.ui.adapter.TipoListAdapter;
 
 public class TipoListFragment extends ListEntityFragment<TipoCRUDFragment> {

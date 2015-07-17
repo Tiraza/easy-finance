@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp">
+
+        <com.bluejamesbond.text.DocumentView
+            android:id="@+id/txt_license"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:documentView_antialias="true"
+            app:documentView_cacheConfig="auto_quality"
+            app:documentView_hyphen="-"
+            app:documentView_insetPadding="10dp"
+            app:documentView_insetPaddingBottom="10dp"
+            app:documentView_insetPaddingLeft="10dp"
+            app:documentView_insetPaddingRight="10dp"
+            app:documentView_insetPaddingTop="10dp"
+            app:documentView_lineHeightMultiplier="1.3"
+            app:documentView_reverse="false"
+            app:documentView_textAlignment="justified"
+            app:documentView_textColor="@android:color/black"
+            app:documentView_textFormat="plain"
+            app:documentView_textSize="14sp"
+            app:documentView_textStyle="bold"
+            app:documentView_textSubPixel="true"
+            app:documentView_wordSpacingMultiplier="2.0"/>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/white"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btn_libraries"
+            style="@style/FlatButton"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/libraries"/>
+
+        <Button
+            android:id="@+id/btn_developers"
+            style="@style/FlatButton"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/developers"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

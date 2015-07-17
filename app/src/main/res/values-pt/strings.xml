@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="change">Alterar</string>
+    <string name="required">Campo obrigatório</string>
+    <string name="settings">Configurações</string>
+    <string name="type_description">Descrição do tipo</string>
+    <string name="delete">Deletar</string>
+    <string name="nav_drawer_close">Fechando menu</string>
+    <string name="nav_drawer_open">Abrindo menu</string>
+    <string name="username">Nome de usuário</string>
+    <string name="new_registry">Novo</string>
+    <string name="save_registry">Salvar</string>
+    <string name="about">Sobre</string>
+    <string name="type">Tipo</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="expenses">Despesas</string>
+    <string name="expense_date">Data da despesa</string>
+    <string name="spending_due_date">Data de vencimento da despesa</string>
+    <string name="type_expense">Tipo da despesa</string>
+    <string name="spending_value">Valor da despesa</string>
+    <string name="amount_revenue">Valor da receita</string>
+    <string name="type_income">Tipo da receita</string>
+    <string name="relation_income_expense">Relação entre receita e despesa</string>
+    <string name="incomes">Receita</string>
+    <string name="description_revenue">Descrição da receita</string>
+    <string name="description_expense">Descrição da despesa</string>
+    <string name="due_date_revenue">Data de vencimento da receita</string>
+    <string name="revenue_date">Data da receita</string>
+    <string name="developers">Desenvolvedores</string>
+    <string name="libraries">Bibliotecas</string>
+</resources>

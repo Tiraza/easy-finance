@@ -3,7 +3,7 @@ package br.com.extractor.easyfinance.ui.receita;
 import android.support.v7.widget.RecyclerView;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.arquitetura.ui.ListEntityFragment;
+import br.com.extractor.easyfinance.arquitetura.controller.ListEntityFragment;
 import br.com.extractor.easyfinance.ui.adapter.ReceitasListAdapter;
 
 public class ReceitaListFragment extends ListEntityFragment<ReceitaCRUDFragment> {

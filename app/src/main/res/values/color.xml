@@ -6,6 +6,8 @@
     <color name="colorPrimaryDark">#00796B</color>
     <color name="colorAccent">#F57C00</color>
 
+    <color name="flatButtonTextColor">#A95703</color>
+
     <color name="grey">#ddd</color>
     <color name="black">#000</color>
 

@@ -32,7 +32,7 @@
                     android:id="@+id/edt_descricao_receita"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/descricao_receita"
+                    android:hint="@string/description_revenue"
                     android:inputType="textCapSentences"/>
 
             </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
@@ -46,7 +46,7 @@
                     android:id="@+id/edt_valor_receita"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/valor_receita"
+                    android:hint="@string/amount_revenue"
                     android:inputType="number|numberDecimal|numberSigned"/>
 
             </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
@@ -61,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:hint="@string/data_receita"
+                    android:hint="@string/revenue_date"
                     android:inputType="date"/>
 
             </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:hint="@string/data_vencimento_receita"
+                    android:hint="@string/due_date_revenue"
                     android:inputType="date"/>
 
             </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>

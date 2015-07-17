@@ -17,7 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.arquitetura.ui.EntityCRUDFragment;
+import br.com.extractor.easyfinance.arquitetura.controller.EntityCRUDFragment;
 import br.com.extractor.easyfinance.model.Despesa;
 import br.com.extractor.easyfinance.model.Tipo;
 import br.com.extractor.easyfinance.ui.adapter.TipoSpinnerAdapter;
@@ -59,7 +59,7 @@ public class DespesaCRUDFragment extends EntityCRUDFragment<Despesa> implements 
         edtDescricaoDespesa.setText(entity.getDescricao());
 
         edtValorDespesa.setHint(getActivity().getResources().getString(R.string
-                .valor_despesa) + " em (" + NumberFormat.getCurrencyInstance().getCurrency()
+                .spending_value) + " em (" + NumberFormat.getCurrencyInstance().getCurrency()
                 .getSymbol() + ")");
 
         edtValorDespesa.setText(String.valueOf(entity.getValorPago()));

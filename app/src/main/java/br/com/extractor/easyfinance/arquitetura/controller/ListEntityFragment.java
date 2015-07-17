@@ -1,4 +1,4 @@
-package br.com.extractor.easyfinance.arquitetura.ui;
+package br.com.extractor.easyfinance.arquitetura.controller;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import java.lang.reflect.ParameterizedType;
 
 import br.com.extractor.easyfinance.R;
+import br.com.extractor.easyfinance.arquitetura.ui.DividerItemDecoration;
 import butterknife.ButterKnife;
 
 public abstract class ListEntityFragment<T extends EntityCRUDFragment> extends Fragment

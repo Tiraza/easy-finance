@@ -17,7 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.arquitetura.ui.EntityCRUDFragment;
+import br.com.extractor.easyfinance.arquitetura.controller.EntityCRUDFragment;
 import br.com.extractor.easyfinance.model.Receita;
 import br.com.extractor.easyfinance.model.Tipo;
 import br.com.extractor.easyfinance.ui.adapter.TipoSpinnerAdapter;
@@ -59,7 +59,7 @@ public class ReceitaCRUDFragment extends EntityCRUDFragment<Receita> implements 
         edtDescricaoReceita.setText(entity.getDescricao());
 
         edtValorReceita.setHint(getActivity().getResources().getString(R.string
-                .valor_receita) + " em (" + NumberFormat.getCurrencyInstance().getCurrency()
+                .amount_revenue) + " em (" + NumberFormat.getCurrencyInstance().getCurrency()
                 .getSymbol() + ")");
 
         edtValorReceita.setText(String.valueOf(entity.getValorPago()));

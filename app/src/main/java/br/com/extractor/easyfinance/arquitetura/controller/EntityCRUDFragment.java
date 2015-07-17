@@ -1,4 +1,4 @@
-package br.com.extractor.easyfinance.arquitetura.ui;
+package br.com.extractor.easyfinance.arquitetura.controller;
 
 import android.app.Fragment;
 import android.util.Log;

@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.arquitetura.ui.EntityCRUDFragment;
+import br.com.extractor.easyfinance.arquitetura.controller.EntityCRUDFragment;
 import br.com.extractor.easyfinance.model.Tipo;
 import br.com.extractor.easyfinance.model.domain.CategoriaTitulo;
 import butterknife.Bind;

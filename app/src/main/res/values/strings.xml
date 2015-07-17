@@ -1,40 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Easy Finance</string>
-
-    <!-- Acessibilidade -->
-    <string name="nav_drawer_close">Fechando menu</string>
-    <string name="nav_drawer_open">Abrindo menu</string>
-
-    <!-- Navegação -->
-    <string name="novo">Novo</string>
-    <string name="salvar">Salvar</string>
-    <string name="excluir">Excluir</string>
-    <string name="alterar">Alterar</string>
-    <string name="despesas">Despesas</string>
-    <string name="receitas">Receitas</string>
+    <string name="change">Change</string>
+    <string name="required">Required</string>
+    <string name="settings">Settings</string>
+    <string name="type_description">Description of type</string>
+    <string name="delete">Delete</string>
+    <string name="nav_drawer_close">Closing menu</string>
+    <string name="nav_drawer_open">Opening menu</string>
+    <string name="username">Username</string>
+    <string name="new_registry">New</string>
+    <string name="save_registry">Save</string>
+    <string name="about">About</string>
+    <string name="type">Type</string>
     <string name="dashboard">Dashboard</string>
-    <string name="configuracoes">Configurações</string>
-    <string name="sobre">Sobre</string>
-    <string name="nome_usuario">Nome do Usuário</string>
-
-    <!-- Referente ao modelo de título de despesa -->
-    <string name="tipo_despesa">Tipo da Despesa</string>
-    <string name="data_despesa">Data da Despesa</string>
-    <string name="valor_despesa">Valor da Despesa</string>
-    <string name="data_vencimento_despesa">Data de vencimento da Despesa</string>
-    <string name="descricao_despesa">Descrição da Despesa</string>
-
-    <!-- Referente ao modelo de título de receita -->
-    <string name="tipo_receita">Tipo da Receita</string>
-    <string name="data_receita">Data da Receita</string>
-    <string name="valor_receita">Valor da Receita</string>
-    <string name="data_vencimento_receita">Data de vencimento da Receita</string>
-    <string name="descricao_receita">Descrição da Receita</string>
-
-    <!-- Referente aos formulários -->
-    <string name="campo_obrigatorio">Preenchimento Obrigatório</string>
-    <string name="relacao_receita_despsa">Relação Receitas e Despesas</string>
-    <string name="tipo">Tipo</string>
-    <string name="descricao_tipo">Descrição</string>
-
+    <string name="expenses">Expenses</string>
+    <string name="expense_date">Expense date</string>
+    <string name="spending_due_date">Spending due date</string>
+    <string name="type_expense">Type of expense</string>
+    <string name="spending_value">Spending value</string>
+    <string name="amount_revenue">Amount of revenue</string>
+    <string name="type_income">Type of income</string>
+    <string name="relation_income_expense">Relation between income and expense</string>
+    <string name="incomes">Incomes</string>
+    <string name="description_revenue">Description of revenue</string>
+    <string name="description_expense">Description of expense</string>
+    <string name="due_date_revenue">Due date revenue</string>
+    <string name="revenue_date">Revenue date</string>
+    <string name="developers">Developers</string>
+    <string name="libraries">Libraries</string>
 </resources>

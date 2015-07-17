@@ -32,7 +32,7 @@
                     android:id="@+id/edt_descricao_tipo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/descricao_tipo"
+                    android:hint="@string/type_description"
                     android:inputType="textCapSentences"/>
 
             </br.com.extractor.easyfinance.arquitetura.ui.widget.CustomTextInputLayout>
