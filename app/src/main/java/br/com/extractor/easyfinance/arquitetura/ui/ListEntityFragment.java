@@ -2,6 +2,13 @@ package br.com.extractor.easyfinance.arquitetura.ui;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,6 +21,25 @@ public abstract class ListEntityFragment<T extends EntityCRUDFragment> extends F
         implements View.OnClickListener, View.OnLongClickListener {
 
     protected T crudEntityFragment;
+    protected RecyclerView list;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(getResourceLayoutID(), container, false);
+        ButterKnife.bind(this, rootView);
+
+        list = ButterKnife.findById(rootView, getListID());
+
+        list.setLayoutManager(new LinearLayoutManager(list.getContext()));
+        list.setHasFixedSize(true);
+        list.setItemAnimator(new DefaultItemAnimator());
+        list.setAdapter(getAdapter());
+
+        list.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+
+        return rootView;
+    }
 
     @Override
     public final void onClick(View view) {
@@ -35,14 +61,24 @@ public abstract class ListEntityFragment<T extends EntityCRUDFragment> extends F
     @Override
     public void onResume() {
         super.onResume();
-        View view = ButterKnife.findById(getActivity(), setViewCreateEntity());
+        View view = ButterKnife.findById(getActivity(), getViewCreateEntity());
         view.setOnClickListener(this);
     }
 
-    public abstract int setViewCreateEntity();
+    public abstract int getViewCreateEntity();
+
+    public abstract int getResourceLayoutID();
+
+    public abstract int getListID();
+
+    public abstract RecyclerView.Adapter getAdapter();
 
     @Override
     public final boolean onLongClick(View view) {
+
+        // TODO: Falta implementar
+        view.setBackgroundColor(Color.BLUE);
+
         return false;
     }
 
