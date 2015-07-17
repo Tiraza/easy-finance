@@ -25,7 +25,7 @@ public class DespesaListFragment extends ListEntityFragment<DespesaCRUDFragment>
 
     @Override
     public RecyclerView.Adapter getAdapter() {
-        return new DespesasListAdapter(this, this);
+        return new DespesasListAdapter(getOnClickNewEntity(), this);
     }
 
 }

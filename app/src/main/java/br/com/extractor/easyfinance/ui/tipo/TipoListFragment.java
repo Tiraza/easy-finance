@@ -25,7 +25,7 @@ public class TipoListFragment extends ListEntityFragment<TipoCRUDFragment> {
 
     @Override
     public RecyclerView.Adapter getAdapter() {
-        return new TipoListAdapter(this, this);
+        return new TipoListAdapter(getOnClickNewEntity(), this);
     }
 
 }

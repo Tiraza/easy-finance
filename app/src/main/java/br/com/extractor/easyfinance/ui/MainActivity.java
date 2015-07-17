@@ -1,5 +1,6 @@
 package br.com.extractor.easyfinance.ui;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private SparseArray<Fragmento> mapFragmento;
     private FragmentManager fragmentManager;
     private ActionBar actionBar;
+    private FragmentCommunication fragmentCommunication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,10 +119,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeFragment(int itemId) {
         Fragmento fragmento = mapFragmento.get(itemId);
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_container, fragmento.getFragment());
-        fragmentTransaction.commit();
-        actionBar.setTitle(fragmento.getTitle());
+        Fragment fragment = fragmento.getFragment();
+        try {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main_container, fragment);
+            fragmentTransaction.commit();
+            actionBar.setTitle(fragmento.getTitle());
+            fragmentCommunication = (FragmentCommunication) fragment;
+        } catch (ClassCastException e) {
+            throw new RuntimeException(fragment.getClass().getSimpleName() + " must implement " +
+                    "FragmentCommunication ");
+        }
     }
 
     @Override
@@ -131,7 +140,11 @@ public class MainActivity extends AppCompatActivity {
             if (fragmentManager.getBackStackEntryCount() > 0) {
                 fragmentManager.popBackStack();
             } else {
-                super.onBackPressed();
+                if (fragmentCommunication.hasPendencies()) {
+                    fragmentCommunication.freePendencies();
+                } else {
+                    super.onBackPressed();
+                }
             }
         }
     }

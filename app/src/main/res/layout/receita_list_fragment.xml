@@ -9,14 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/nova_receita"
-        style="@style/FloatActionButton"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_plus"/>
+        android:layout_alignParentRight="true">
+
+        <include
+            android:id="@+id/nova_receita"
+            layout="@layout/float_action_button_normal_state"/>
+
+    </FrameLayout>
 
 </RelativeLayout>

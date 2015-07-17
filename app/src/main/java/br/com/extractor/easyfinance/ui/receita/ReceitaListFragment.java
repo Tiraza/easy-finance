@@ -25,7 +25,7 @@ public class ReceitaListFragment extends ListEntityFragment<ReceitaCRUDFragment>
 
     @Override
     public RecyclerView.Adapter getAdapter() {
-        return new ReceitasListAdapter(this, this);
+        return new ReceitasListAdapter(getOnClickNewEntity(), this);
     }
 
 }
