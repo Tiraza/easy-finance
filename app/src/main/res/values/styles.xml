@@ -8,17 +8,9 @@
     </style>
 
     <style name="FloatActionButton" parent="AppTheme">
-        <item name="elevation">6dp</item>
-        <item name="borderWidth">1dp</item>
-        <item name="pressedTranslationZ">12dp</item>
-    </style>
-
-    <style name="FloatActionButtonNormalState" parent="FloatActionButton">
-        <item name="backgroundTint">@color/colorAccent</item>
-    </style>
-
-    <style name="FloatActionButtonDeleteState" parent="FloatActionButton">
-        <item name="backgroundTint">@color/floatActionButtonDeleteState</item>
+        <item name="elevation">@dimen/fab_elevation</item>
+        <item name="borderWidth">@dimen/fab_border_width</item>
+        <item name="pressedTranslationZ">@dimen/fab_translation_z_pressed</item>
     </style>
 
     <style name="FlatButton" parent="Widget.AppCompat.Button.Borderless">

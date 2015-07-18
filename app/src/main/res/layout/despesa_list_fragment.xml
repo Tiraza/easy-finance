@@ -10,16 +10,20 @@
         android:layout_height="match_parent"/>
 
     <FrameLayout
+        android:id="@+id/frame_layout_fab_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/nova_despesa"
+        style="@style/FloatActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true">
-
-        <include
-            android:id="@+id/nova_despesa"
-            layout="@layout/float_action_button_normal_state"/>
-
-    </FrameLayout>
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_plus"/>
 
 </RelativeLayout>

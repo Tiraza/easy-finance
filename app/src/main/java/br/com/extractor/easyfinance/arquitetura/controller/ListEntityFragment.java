@@ -1,5 +1,7 @@
 package br.com.extractor.easyfinance.arquitetura.controller;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -7,54 +9,57 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.ui.DividerItemDecoration;
 import br.com.extractor.easyfinance.ui.FragmentCommunication;
-import br.com.extractor.easyfinance.util.ReflectionUtil;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
-public abstract class ListEntityFragment<T extends EntityCRUDFragment> extends Fragment
-        implements View.OnLongClickListener, FragmentCommunication {
+public abstract class ListEntityFragment
+        extends Fragment
+        implements View.OnLongClickListener, FragmentCommunication, View.OnClickListener {
 
     protected View rootView;
-    protected T crudEntityFragment;
+    protected EntityFormFragment formEntityFragment;
     protected RecyclerView list;
-    protected View viewCreateEntitys;
-    protected View viewDeleteEntitys;
+    protected View viewCreateDeleteEntities;
 
-    private Class<T> clazz;
-    private boolean hasItemClicked;
-    private boolean hasViewDeleteEntityInflated;
+    private List<View> listClickedViews;
+    private Bundle bundle;
+    private AnimatorSet addToDelete;
+    private AnimatorSet deleteToAdd;
 
-    private View.OnClickListener onClickNewEntity = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            try {
-                crudEntityFragment = clazz.newInstance();
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(((ViewGroup) rootView.getParent()).getId(),
-                        crudEntityFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-                crudEntityFragment.setClickedView(view.findViewById(R.id.txt_id));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+    @Override
+    public void onClick(View view) {
+        if (hasPendencies()) {
+            freePendencies();
+        } else {
+            openEntityForm(view);
         }
-    };
+    }
 
-    private View.OnClickListener onClickDeleteEntity = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Log.e("", "Removendo entidade ...");
+    private void openEntityForm(View view) {
+        bundle.clear();
+        View viewIdEntity = view.findViewById(R.id.txt_id);
+        long id = 0;
+        if (viewIdEntity != null) {
+            id = Long.parseLong(((TextView) viewIdEntity).getText().toString());
         }
-    };
+        bundle.putLong("id", id);
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(((ViewGroup) rootView.getParent()).getId(), formEntityFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        formEntityFragment.putData(bundle);
+    }
 
     @Nullable
     @Override
@@ -72,53 +77,80 @@ public abstract class ListEntityFragment<T extends EntityCRUDFragment> extends F
 
         list.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
 
+        listClickedViews = new ArrayList<>();
+        bundle = new Bundle();
+        formEntityFragment = getFormEntityFragment();
+
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        viewCreateEntitys = ButterKnife.findById(getActivity(), getViewCreateEntity());
-        viewCreateEntitys.setOnClickListener(onClickNewEntity);
-        clazz = ReflectionUtil.getFirstGeneric(getClass());
+        addToDelete = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R
+                .animator.add_to_delete);
+        deleteToAdd = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R
+                .animator.delete_to_add);
+        viewCreateDeleteEntities = ButterKnife.findById(getActivity(), getViewCreateEntity());
+        viewCreateDeleteEntities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (hasPendencies()) {
+                    removeEntities();
+                } else {
+                    openEntityForm(v);
+                }
+            }
+        });
+
+    }
+
+    protected void removeEntities() {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        for (View view : listClickedViews) {
+            long id = Long.parseLong(((TextView) view.findViewById(R.id.txt_id)).getText().toString());
+            realm.where(formEntityFragment.getEntityClass()).equalTo("id", id).findFirst().removeFromRealm();
+        }
+
+        list.getAdapter().notifyDataSetChanged();
+        realm.commitTransaction();
+        realm.close();
+        listClickedViews.clear();
+        deleteToAdd.setTarget(viewCreateDeleteEntities);
+        deleteToAdd.start();
     }
 
     @Override
     public final boolean onLongClick(View view) {
 
+        freePendencies();
         view.setBackgroundResource(R.color.itemListSelected);
 
-        if (!hasItemClicked) {
-            hasItemClicked = true;
-            viewCreateEntitys.setVisibility(View.INVISIBLE);
-            if (!hasViewDeleteEntityInflated) {
-                hasViewDeleteEntityInflated = true;
-                FrameLayout frameLayout = (FrameLayout) viewCreateEntitys.getParent();
-                viewDeleteEntitys = View.inflate(getActivity(), R.layout.float_action_button_delete_state,
-                        frameLayout);
-                viewDeleteEntitys.setOnClickListener(onClickDeleteEntity);
-            } else {
-                viewDeleteEntitys.setVisibility(View.VISIBLE);
-            }
+        if (listClickedViews.isEmpty()) {
+            addToDelete.setTarget(viewCreateDeleteEntities);
+            addToDelete.start();
         }
+
+        listClickedViews.add(view);
 
         return false;
     }
 
-
     @Override
     public boolean hasPendencies() {
-        return hasItemClicked;
+        return !listClickedViews.isEmpty();
     }
 
     @Override
     public void freePendencies() {
-        hasItemClicked = false;
-        // TODO: Desmarcar as views e voltar o botão de adicionar
-    }
-
-    public View.OnClickListener getOnClickNewEntity() {
-        return onClickNewEntity;
+        for (View view : listClickedViews) {
+            view.setBackgroundResource(R.color.mdtp_white);
+        }
+        deleteToAdd.setTarget(viewCreateDeleteEntities);
+        deleteToAdd.start();
+        listClickedViews.clear();
     }
 
     public abstract int getViewCreateEntity();
@@ -128,5 +160,7 @@ public abstract class ListEntityFragment<T extends EntityCRUDFragment> extends F
     public abstract int getListID();
 
     public abstract RecyclerView.Adapter getAdapter();
+
+    public abstract EntityFormFragment getFormEntityFragment();
 
 }

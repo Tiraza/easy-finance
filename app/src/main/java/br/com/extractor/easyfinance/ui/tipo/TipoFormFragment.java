@@ -11,14 +11,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.arquitetura.controller.EntityCRUDFragment;
+import br.com.extractor.easyfinance.arquitetura.controller.EntityFormFragment;
 import br.com.extractor.easyfinance.model.Tipo;
 import br.com.extractor.easyfinance.model.domain.CategoriaTitulo;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TipoCRUDFragment extends EntityCRUDFragment<Tipo> {
+public class TipoFormFragment extends EntityFormFragment<Tipo> {
 
     @Bind(R.id.spn_categoria_tipo)
     Spinner spnCategoriaTipo;

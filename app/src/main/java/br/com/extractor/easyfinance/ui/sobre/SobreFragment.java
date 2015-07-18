@@ -9,12 +9,13 @@ import android.view.ViewGroup;
 import com.bluejamesbond.text.DocumentView;
 
 import br.com.extractor.easyfinance.R;
+import br.com.extractor.easyfinance.ui.FragmentCommunication;
 import br.com.extractor.easyfinance.util.LoadResources;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SobreFragment extends Fragment {
+public class SobreFragment extends Fragment implements FragmentCommunication {
 
     @Bind(R.id.txt_license)
     DocumentView txtLicense;
@@ -37,6 +38,16 @@ public class SobreFragment extends Fragment {
 
     @OnClick(R.id.btn_libraries)
     public void onClickLibraries() {
+
+    }
+
+    @Override
+    public boolean hasPendencies() {
+        return false;
+    }
+
+    @Override
+    public void freePendencies() {
 
     }
 

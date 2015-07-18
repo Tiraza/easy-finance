@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         initMapFragmentos();
         setupToolbar();
         setupDrawerContent();
-        changeFragment(R.id.menu_dashboard);
+        changeFragment(R.id.menu_tipo);
     }
 
     @Override

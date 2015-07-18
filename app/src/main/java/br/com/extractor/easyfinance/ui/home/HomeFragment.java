@@ -12,6 +12,7 @@ import java.util.List;
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.model.Despesa;
 import br.com.extractor.easyfinance.model.Receita;
+import br.com.extractor.easyfinance.ui.FragmentCommunication;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.Realm;
@@ -19,7 +20,7 @@ import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.view.PieChartView;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements FragmentCommunication {
 
     @Bind(R.id.pie_chart_view)
     PieChartView pieChartView;
@@ -51,4 +52,15 @@ public class HomeFragment extends Fragment {
 
         return rootView;
     }
+
+    @Override
+    public boolean hasPendencies() {
+        return false;
+    }
+
+    @Override
+    public void freePendencies() {
+
+    }
+
 }

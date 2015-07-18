@@ -3,10 +3,11 @@ package br.com.extractor.easyfinance.ui.despesa;
 import android.support.v7.widget.RecyclerView;
 
 import br.com.extractor.easyfinance.R;
+import br.com.extractor.easyfinance.arquitetura.controller.EntityFormFragment;
 import br.com.extractor.easyfinance.arquitetura.controller.ListEntityFragment;
 import br.com.extractor.easyfinance.ui.adapter.DespesasListAdapter;
 
-public class DespesaListFragment extends ListEntityFragment<DespesaCRUDFragment> {
+public class DespesaListFragment extends ListEntityFragment {
 
     @Override
     public int getViewCreateEntity() {
@@ -25,7 +26,12 @@ public class DespesaListFragment extends ListEntityFragment<DespesaCRUDFragment>
 
     @Override
     public RecyclerView.Adapter getAdapter() {
-        return new DespesasListAdapter(getOnClickNewEntity(), this);
+        return new DespesasListAdapter(this, this);
+    }
+
+    @Override
+    public EntityFormFragment getFormEntityFragment() {
+        return new DespesaFormFragment();
     }
 
 }

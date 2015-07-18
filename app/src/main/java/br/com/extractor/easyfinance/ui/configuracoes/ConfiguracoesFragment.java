@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-public class ConfiguracoesFragment extends Fragment {
+import br.com.extractor.easyfinance.ui.FragmentCommunication;
+
+public class ConfiguracoesFragment extends Fragment implements FragmentCommunication {
 
     @Nullable
     @Override
@@ -16,4 +18,15 @@ public class ConfiguracoesFragment extends Fragment {
         Toast.makeText(getActivity(), "Fragment Configurações", Toast.LENGTH_SHORT).show();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+
+    @Override
+    public boolean hasPendencies() {
+        return false;
+    }
+
+    @Override
+    public void freePendencies() {
+
+    }
+
 }

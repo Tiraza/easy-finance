@@ -12,10 +12,6 @@ public class Fragmento {
         this.title = title;
     }
 
-    public Fragmento(Fragment fragment) {
-        this(fragment, 0);
-    }
-
     public Fragment getFragment() {
         return fragment;
     }

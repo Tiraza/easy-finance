@@ -1,42 +1,44 @@
 package br.com.extractor.easyfinance.arquitetura.controller;
 
 import android.app.Fragment;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
-import java.lang.reflect.ParameterizedType;
-
+import br.com.extractor.easyfinance.util.UtilReflection;
 import io.realm.Realm;
 import io.realm.RealmObject;
 
-public abstract class EntityCRUDFragment<T extends RealmObject> extends Fragment implements
-        CallbackCRUDFragment {
+public abstract class EntityFormFragment<T extends RealmObject> extends Fragment {
 
     protected T entity;
     protected Realm realm;
+
+    private Class<T> clazz;
+
+    public EntityFormFragment() {
+        clazz = (Class<T>) UtilReflection.getParameterizedTypeFromForm(getClass());
+    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         try {
             realm.cancelTransaction();
-            Log.d("DB", "Transação revertida");
         } catch (Exception e) {
-            Log.d("DB", "Transação commitada");
+
         }
         entity = null;
         realm.close();
     }
 
-    @Override
-    public void setClickedView(View viewById) {
+    public void putData(Bundle bundle) {
+
+        long id = bundle.getLong("id");
+
         realm = Realm.getDefaultInstance();
-        Class<T> clazz = ((Class) ((ParameterizedType) getClass().getGenericSuperclass())
-                .getActualTypeArguments()[0]);
         realm.beginTransaction();
-        if (viewById != null) {
-            long id = Long.parseLong(((TextView) viewById).getText().toString());
+
+        if (id != 0) {
             entity = realm.where(clazz).equalTo("id", id).findFirst();
         } else {
             try {
@@ -45,6 +47,11 @@ public abstract class EntityCRUDFragment<T extends RealmObject> extends Fragment
                 throw new RuntimeException(e);
             }
         }
+
+    }
+
+    public Class<T> getEntityClass() {
+        return clazz;
     }
 
     public abstract void salvar(View view);

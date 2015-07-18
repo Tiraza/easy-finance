@@ -3,10 +3,11 @@ package br.com.extractor.easyfinance.ui.tipo;
 import android.support.v7.widget.RecyclerView;
 
 import br.com.extractor.easyfinance.R;
+import br.com.extractor.easyfinance.arquitetura.controller.EntityFormFragment;
 import br.com.extractor.easyfinance.arquitetura.controller.ListEntityFragment;
 import br.com.extractor.easyfinance.ui.adapter.TipoListAdapter;
 
-public class TipoListFragment extends ListEntityFragment<TipoCRUDFragment> {
+public class TipoListFragment extends ListEntityFragment {
 
     @Override
     public int getViewCreateEntity() {
@@ -25,7 +26,12 @@ public class TipoListFragment extends ListEntityFragment<TipoCRUDFragment> {
 
     @Override
     public RecyclerView.Adapter getAdapter() {
-        return new TipoListAdapter(getOnClickNewEntity(), this);
+        return new TipoListAdapter(this, this);
+    }
+
+    @Override
+    public EntityFormFragment getFormEntityFragment() {
+        return new TipoFormFragment();
     }
 
 }

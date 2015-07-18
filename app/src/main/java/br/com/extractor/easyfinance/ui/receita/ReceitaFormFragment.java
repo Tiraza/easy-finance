@@ -17,7 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.arquitetura.controller.EntityCRUDFragment;
+import br.com.extractor.easyfinance.arquitetura.controller.EntityFormFragment;
 import br.com.extractor.easyfinance.model.Receita;
 import br.com.extractor.easyfinance.model.Tipo;
 import br.com.extractor.easyfinance.ui.adapter.TipoSpinnerAdapter;
@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.RealmResults;
 
-public class ReceitaCRUDFragment extends EntityCRUDFragment<Receita> implements DatePickerDialog.OnDateSetListener {
+public class ReceitaFormFragment extends EntityFormFragment<Receita> implements DatePickerDialog.OnDateSetListener {
 
     @Bind(R.id.spn_tipo_receita)
     Spinner spnTipoReceita;
