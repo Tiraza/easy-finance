@@ -67,11 +67,8 @@ public class DespesaFormFragment extends EntityFormFragment<Despesa> implements 
         Date dataPaga = entity.getDataPaga();
         Date dataVencimento = entity.getDataVencimento();
 
-        if (dataPaga == null) {
+        if (isNewRegistry) {
             dataPaga = new Date();
-        }
-
-        if (dataVencimento == null) {
             dataVencimento = new Date();
         }
 
@@ -86,7 +83,9 @@ public class DespesaFormFragment extends EntityFormFragment<Despesa> implements 
         edtData = (EditText) view;
         Calendar calendar = Calendar.getInstance();
 
-        if (entity.getDataVencimento() != null) {
+        if (view.getId() == R.id.edt_data_despesa) {
+            calendar.setTime(entity.getDataPaga());
+        } else {
             calendar.setTime(entity.getDataVencimento());
         }
 

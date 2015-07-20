@@ -12,6 +12,7 @@ public abstract class EntityFormFragment<T extends RealmObject> extends Fragment
 
     protected T entity;
     protected Realm realm;
+    protected boolean isNewRegistry;
 
     private Class<T> clazz;
 
@@ -39,9 +40,11 @@ public abstract class EntityFormFragment<T extends RealmObject> extends Fragment
         realm.beginTransaction();
 
         if (id != 0) {
+            isNewRegistry = false;
             entity = realm.where(clazz).equalTo("id", id).findFirst();
         } else {
             try {
+                isNewRegistry = true;
                 entity = realm.copyToRealm(clazz.newInstance());
             } catch (Exception e) {
                 throw new RuntimeException(e);

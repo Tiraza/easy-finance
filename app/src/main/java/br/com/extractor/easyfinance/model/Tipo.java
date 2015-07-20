@@ -4,11 +4,12 @@ import br.com.extractor.easyfinance.model.domain.CategoriaTitulo;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Tipo extends RealmObject {
+public class Tipo extends RealmObject implements Entidade {
 
     @PrimaryKey
     private long id;
     private String descricao;
+
     /**
      * @see CategoriaTitulo
      */

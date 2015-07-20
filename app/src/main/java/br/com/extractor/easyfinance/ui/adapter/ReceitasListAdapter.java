@@ -30,8 +30,7 @@ public class ReceitasListAdapter extends RecyclerView.Adapter<ReceitasListAdapte
 
     @Override
     public ViewHolderReceitas onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout
-                .receita_item_listview, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.receita_item_listview, parent, false);
         view.setOnLongClickListener(itemLongClickEvent);
         view.setOnClickListener(itemClickEvent);
         return new ViewHolderReceitas(view);

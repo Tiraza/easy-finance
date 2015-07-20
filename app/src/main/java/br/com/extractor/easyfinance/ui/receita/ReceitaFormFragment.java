@@ -67,11 +67,8 @@ public class ReceitaFormFragment extends EntityFormFragment<Receita> implements 
         Date dataPaga = entity.getDataPaga();
         Date dataVencimento = entity.getDataVencimento();
 
-        if (dataPaga == null) {
+        if (isNewRegistry) {
             dataPaga = new Date();
-        }
-
-        if (dataVencimento == null) {
             dataVencimento = new Date();
         }
 
@@ -82,11 +79,13 @@ public class ReceitaFormFragment extends EntityFormFragment<Receita> implements 
     }
 
     @OnClick({R.id.edt_data_vencimento_receita, R.id.edt_data_receita})
-    public void onClickDataVencimentoDespesa(View view) {
+    public void onClickDataReceita(View view) {
         edtData = (EditText) view;
         Calendar calendar = Calendar.getInstance();
 
-        if (entity.getDataVencimento() != null) {
+        if (view.getId() == R.id.edt_data_receita) {
+            calendar.setTime(entity.getDataPaga());
+        } else {
             calendar.setTime(entity.getDataVencimento());
         }
 

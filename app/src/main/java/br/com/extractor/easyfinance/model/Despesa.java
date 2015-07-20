@@ -5,7 +5,7 @@ import java.util.Date;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Despesa extends RealmObject implements Titulo {
+public class Despesa extends RealmObject implements Entidade, Titulo {
 
     @PrimaryKey
     private long id;

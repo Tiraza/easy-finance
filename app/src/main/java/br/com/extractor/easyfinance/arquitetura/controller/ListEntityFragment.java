@@ -14,17 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.ui.DividerItemDecoration;
+import br.com.extractor.easyfinance.model.Entidade;
 import br.com.extractor.easyfinance.ui.FragmentCommunication;
 import butterknife.ButterKnife;
 import io.realm.Realm;
+import io.realm.RealmObject;
 
-public abstract class ListEntityFragment
-        extends Fragment
+public abstract class ListEntityFragment extends Fragment
         implements View.OnLongClickListener, FragmentCommunication, View.OnClickListener {
 
     protected View rootView;
@@ -107,25 +110,68 @@ public abstract class ListEntityFragment
 
     protected void removeEntities() {
         Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
+        realm.setAutoRefresh(true);
+
+        List<RealmObject> listEntitys = new ArrayList<>();
 
         for (View view : listClickedViews) {
             long id = Long.parseLong(((TextView) view.findViewById(R.id.txt_id)).getText().toString());
-            realm.where(formEntityFragment.getEntityClass()).equalTo("id", id).findFirst().removeFromRealm();
+            RealmObject result = realm.where(formEntityFragment.getEntityClass()).equalTo("id", id).findFirst();
+            listEntitys.add(result);
         }
 
-        list.getAdapter().notifyDataSetChanged();
-        realm.commitTransaction();
+        resolveDependencies(realm, listEntitys);
+
         realm.close();
-        listClickedViews.clear();
-        deleteToAdd.setTarget(viewCreateDeleteEntities);
-        deleteToAdd.start();
+    }
+
+    public void resolveDependencies(final Realm realm, final List<RealmObject> listEntitys) {
+
+        boolean hasRegistries = false;
+
+        for (RealmObject realmObject : listEntitys) {
+            for (Class<? extends RealmObject> dependencyClass : getDependencies()) {
+                Entidade entidade = (Entidade) realmObject;
+                int quantity = realm.where(dependencyClass).equalTo("tipo.id", entidade.getId())
+                        .findAll().size();
+                if (quantity > 0) {
+                    hasRegistries = true;
+                }
+            }
+        }
+
+        if (hasRegistries) {
+
+            new MaterialDialog.Builder(getActivity())
+                    .title("Erro")
+                    .content("Existem registros que utilizam um tipo informado para exclusão")
+                    .neutralText("OK")
+                    .cancelable(false)
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onNeutral(MaterialDialog dialog) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+
+        } else {
+            realm.beginTransaction();
+
+            for (View view : listClickedViews) {
+                long id = Long.parseLong(((TextView) view.findViewById(R.id.txt_id)).getText().toString());
+                realm.where(formEntityFragment.getEntityClass()).equalTo("id", id).findAll().clear();
+            }
+
+            realm.commitTransaction();
+            list.getAdapter().notifyDataSetChanged();
+            freePendencies();
+        }
+
     }
 
     @Override
     public final boolean onLongClick(View view) {
 
-        freePendencies();
         view.setBackgroundResource(R.color.itemListSelected);
 
         if (listClickedViews.isEmpty()) {
@@ -162,5 +208,7 @@ public abstract class ListEntityFragment
     public abstract RecyclerView.Adapter getAdapter();
 
     public abstract EntityFormFragment getFormEntityFragment();
+
+    public abstract List<Class<? extends RealmObject>> getDependencies();
 
 }
