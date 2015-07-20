@@ -146,7 +146,7 @@ public abstract class ListEntityFragment extends Fragment
         if (hasRegistries) {
 
             new MaterialDialog.Builder(getActivity())
-                    .title("Erro em \"" + entityName + "\"")
+                    .title("Erro")
                     .content("Existem registros que utilizam um tipo informado para exclusão")
                     .neutralText("OK")
                     .cancelable(false)

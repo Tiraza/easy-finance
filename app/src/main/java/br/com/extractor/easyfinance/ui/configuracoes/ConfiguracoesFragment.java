@@ -18,7 +18,14 @@ public class ConfiguracoesFragment extends PreferenceFragment implements Fragmen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
-        findPreference("username").setOnPreferenceChangeListener(this);
+        configPreference(findPreference(Preferences.USERNAME));
+    }
+
+    private void configPreference(Preference preference) {
+        String value = Preferences.getString(preference.getKey(), "");
+        preference.setOnPreferenceChangeListener(this);
+        preference.setSummary(value);
+        preference.setDefaultValue(value);
     }
 
     @Override
@@ -45,6 +52,8 @@ public class ConfiguracoesFragment extends PreferenceFragment implements Fragmen
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
         Preferences.putString(preference.getKey(), (String) o);
+        preference.setSummary((String) o);
+        preference.setDefaultValue(o);
         activityCommunication.updateValues();
         return false;
     }
