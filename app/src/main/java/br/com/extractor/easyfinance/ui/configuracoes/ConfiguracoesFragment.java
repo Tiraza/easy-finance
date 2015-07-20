@@ -1,22 +1,24 @@
 package br.com.extractor.easyfinance.ui.configuracoes;
 
-import android.app.Fragment;
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+import android.preference.Preference;
+import android.preference.PreferenceFragment;
 
+import br.com.extractor.easyfinance.R;
+import br.com.extractor.easyfinance.arquitetura.preference.Preferences;
+import br.com.extractor.easyfinance.ui.ActivityCommunication;
 import br.com.extractor.easyfinance.ui.FragmentCommunication;
 
-public class ConfiguracoesFragment extends Fragment implements FragmentCommunication {
+public class ConfiguracoesFragment extends PreferenceFragment implements FragmentCommunication, Preference.OnPreferenceChangeListener {
 
-    @Nullable
+    private ActivityCommunication activityCommunication;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Toast.makeText(getActivity(), "Fragment Configurações", Toast.LENGTH_SHORT).show();
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.preferences);
+        findPreference("username").setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -27,6 +29,24 @@ public class ConfiguracoesFragment extends Fragment implements FragmentCommunica
     @Override
     public void freePendencies() {
 
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            activityCommunication = (ActivityCommunication) activity;
+        } catch (Exception e) {
+            throw new ClassCastException(activity.getClass().getSimpleName() + " must implement "
+                    + ActivityCommunication.class.getSimpleName());
+        }
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object o) {
+        Preferences.putString(preference.getKey(), (String) o);
+        activityCommunication.updateValues();
+        return false;
     }
 
 }

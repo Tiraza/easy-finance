@@ -28,4 +28,8 @@
     <string name="revenue_date">Data da receita</string>
     <string name="developers">Desenvolvedores</string>
     <string name="libraries">Bibliotecas</string>
+    <string name="error_dialog_delete_entity">Existem registros que utilizam um tipo informado para exclusão</string>
+    <string name="preference_dialog_username">Insira o seu nome</string>
+    <string name="user_preferences">Configurações do usuário</string>
+    <string name="thanks">Agradecimentos</string>
 </resources>

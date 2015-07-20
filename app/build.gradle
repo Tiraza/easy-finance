@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 22
@@ -43,4 +44,5 @@ dependencies {
     compile 'com.wdullaer:materialdatetimepicker:1.4.1'
     compile 'com.github.bluejamesbond:textjustify-android:2.1.0'
     compile 'com.afollestad:material-dialogs:0.7.6.0'
+    compile 'com.google.android.gms:play-services-analytics:7.5.0'
 }
