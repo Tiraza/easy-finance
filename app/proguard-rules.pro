@@ -31,3 +31,5 @@
 -keep @io.realm.annotations.RealmModule class *
 -dontwarn javax.**
 -dontwarn io.realm.**
+
+-keep class com.github.mikephil.charting.** { *; }

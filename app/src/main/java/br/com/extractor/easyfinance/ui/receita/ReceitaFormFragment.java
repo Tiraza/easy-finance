@@ -70,6 +70,8 @@ public class ReceitaFormFragment extends EntityFormFragment<Receita> implements 
         if (isNewRegistry) {
             dataPaga = new Date();
             dataVencimento = new Date();
+            entity.setDataPaga(dataPaga);
+            entity.setDataVencimento(dataVencimento);
         }
 
         edtDataReceitaPaga.setText(SimpleDateFormat.getDateInstance().format(dataPaga));

@@ -33,4 +33,13 @@
     <string name="user_preferences">User Preferences</string>
     <string name="preference_dialog_username">Insert your username</string>
     <string name="thanks">Thanks</string>
+    <string name="graph_balance">Balance</string>
+    <string name="graph_relation_income_expenditure">Relation between income and expense</string>
+
+    <string name="exception_graph_date_initial_invalid">Initial Date must be less or equal to final date</string>
+    <string name="exception_no_data">There\'s no data to show in the graph</string>
+
+    <string name="ok">OK</string>
+    <string name="error">Error</string>
+    <string name="exception_unable_delete_has_registries">Unable to delete, has registries that depends on this</string>
 </resources>

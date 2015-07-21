@@ -70,6 +70,8 @@ public class DespesaFormFragment extends EntityFormFragment<Despesa> implements 
         if (isNewRegistry) {
             dataPaga = new Date();
             dataVencimento = new Date();
+            entity.setDataPaga(dataPaga);
+            entity.setDataVencimento(dataVencimento);
         }
 
         edtDataDespesaPaga.setText(SimpleDateFormat.getDateInstance().format(dataPaga));

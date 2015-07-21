@@ -5,16 +5,17 @@
               android:orientation="vertical"
               android:padding="8dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/relation_income_expense"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-    <lecho.lib.hellocharts.view.PieChartView
-        android:id="@+id/pie_chart_view"
+    <Spinner
+        android:id="@+id/type_chart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"/>
+
+    <FrameLayout
+        android:id="@+id/chart_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </LinearLayout>

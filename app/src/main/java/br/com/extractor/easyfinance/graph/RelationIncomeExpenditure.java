@@ -2,42 +2,26 @@ package br.com.extractor.easyfinance.graph;
 
 import android.content.Context;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.github.mikephil.charting.charts.Chart;
+import com.github.mikephil.charting.charts.PieChart;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.model.Despesa;
-import br.com.extractor.easyfinance.model.Receita;
-import io.realm.Realm;
-import lecho.lib.hellocharts.model.PieChartData;
-import lecho.lib.hellocharts.model.SliceValue;
 
-public class RelationIncomeExpenditure implements Graph {
+public class RelationIncomeExpenditure extends AbstractChart {
 
-    public PieChartData getChartData(Context context) {
+    @Override
+    public String getDescription(Context context) {
+        return context.getString(R.string.graph_relation_income_expenditure);
+    }
 
-        List<SliceValue> pieValues = new ArrayList<>();
+    @Override
+    protected Chart buildChart(Context context) {
+        return new PieChart(context);
+    }
 
-        double valorTotalDespesas = Realm.getDefaultInstance().where(Despesa.class).sumDouble("valorPago");
-        double valorTotalReceitas = Realm.getDefaultInstance().where(Receita.class).sumDouble("valorPago");
+    @Override
+    protected void putParams(Chart chart) throws ChartException {
 
-        SliceValue valueDespesas = new SliceValue((float) valorTotalDespesas, context
-                .getResources().getColor(R.color.gr_despesas));
-        valueDespesas.setLabel(context.getString(R.string.expenses));
-        pieValues.add(valueDespesas);
-
-        SliceValue valueReceitas = new SliceValue((float) valorTotalReceitas, context
-                .getResources().getColor(R.color.gr_receitas));
-        valueReceitas.setLabel(context.getString(R.string.incomes));
-        pieValues.add(valueReceitas);
-
-        PieChartData pieData = new PieChartData(pieValues);
-        pieData.setHasLabels(true);
-        pieData.setHasLabelsOnlyForSelected(false);
-        pieData.setHasLabelsOutside(false);
-        pieData.setHasCenterCircle(true);
-
-        return pieData;
     }
 
 }
