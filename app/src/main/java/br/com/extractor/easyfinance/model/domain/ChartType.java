@@ -8,8 +8,8 @@ import br.com.extractor.easyfinance.ui.EasyFinanceApplication;
 
 public enum ChartType {
 
-    BALANCE(0, R.string.graph_balance, new ChartBalance()),
-    RELATION_INCOME_EXPENDITURE(1, R.string.graph_relation_income_expenditure, new
+    BALANCE(0, R.string.chart_balance, new ChartBalance()),
+    RELATION_INCOME_EXPENDITURE(1, R.string.chart_relation_income_expenditure, new
             RelationIncomeExpenditure());
 
     private int key;

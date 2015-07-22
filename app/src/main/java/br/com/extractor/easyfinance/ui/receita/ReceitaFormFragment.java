@@ -48,7 +48,7 @@ public class ReceitaFormFragment extends EntityFormFragment<Receita> implements 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.receita_crud_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.receita_form_fragment, container, false);
         ButterKnife.bind(this, rootView);
 
         RealmResults<Tipo> list = realm.where(Tipo.class).notEqualTo("categoria", 0).findAll();

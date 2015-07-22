@@ -1,7 +1,9 @@
 package br.com.extractor.easyfinance.graph;
 
+import android.app.FragmentManager;
 import android.content.Context;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -14,17 +16,22 @@ import br.com.extractor.easyfinance.R;
 
 public abstract class AbstractChart {
 
+    private FragmentManager fragmentManager;
+
     public abstract String getDescription(Context context);
 
     protected abstract Chart buildChart(Context context);
 
     protected abstract void putParams(Chart chart) throws ChartException;
 
-    public Chart build(Context context) throws ChartException {
+    protected abstract MaterialDialog buildDialogSelectParams(Context context, Chart chart);
+
+    public Chart build(Context context, FragmentManager fragmentManager) {
+        this.fragmentManager = fragmentManager;
         Chart chart = buildChart(context);
-        putParams(chart);
+        buildDialogSelectParams(context, chart).show();
         chart.setDescription(getDescription(context));
-        chart.setNoDataTextDescription(context.getString(R.string.exception_no_data));
+        chart.setNoDataTextDescription(context.getString(R.string.exception_chart_no_data));
         return chart;
     }
 
@@ -56,6 +63,10 @@ public abstract class AbstractChart {
         lineDataSet.setFillAlpha(65);
         lineDataSet.setFillColor(color);
         return lineDataSet;
+    }
+
+    public FragmentManager getFragmentManager() {
+        return fragmentManager;
     }
 
 }

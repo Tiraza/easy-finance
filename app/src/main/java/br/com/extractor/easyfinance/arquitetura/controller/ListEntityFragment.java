@@ -147,7 +147,7 @@ public abstract class ListEntityFragment extends Fragment
 
             new MaterialDialog.Builder(getActivity())
                     .title(R.string.error)
-                    .content(R.string.exception_unable_delete_has_registries)
+                    .content(R.string.exception_unable_delete_this_has_registries)
                     .neutralText(R.string.ok)
                     .cancelable(false)
                     .callback(new MaterialDialog.ButtonCallback() {

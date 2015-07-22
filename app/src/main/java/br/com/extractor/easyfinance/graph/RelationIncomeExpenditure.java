@@ -2,6 +2,7 @@ package br.com.extractor.easyfinance.graph;
 
 import android.content.Context;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.PieChart;
 
@@ -11,7 +12,7 @@ public class RelationIncomeExpenditure extends AbstractChart {
 
     @Override
     public String getDescription(Context context) {
-        return context.getString(R.string.graph_relation_income_expenditure);
+        return context.getString(R.string.chart_relation_income_expenditure);
     }
 
     @Override
@@ -22,6 +23,11 @@ public class RelationIncomeExpenditure extends AbstractChart {
     @Override
     protected void putParams(Chart chart) throws ChartException {
 
+    }
+
+    @Override
+    protected MaterialDialog buildDialogSelectParams(Context context, Chart chart) {
+        return null;
     }
 
 }
