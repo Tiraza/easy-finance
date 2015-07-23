@@ -51,4 +51,5 @@
     <string name="chart_expenses_by_type">Expenses Chart By Type</string>
     <string name="chart_incomes_by_type">Income Chart By Type</string>
     <string name="final_value">Total Value</string>
+    <string name="select_expense_type">Selecione os tipos de despesas</string>
 </resources>
