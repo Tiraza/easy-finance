@@ -1,4 +1,4 @@
-package br.com.extractor.easyfinance.graph;
+package br.com.extractor.easyfinance.chart;
 
 import android.content.Context;
 

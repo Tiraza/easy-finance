@@ -1,4 +1,4 @@
-package br.com.extractor.easyfinance.graph;
+package br.com.extractor.easyfinance.chart;
 
 import android.app.FragmentManager;
 import android.content.Context;
@@ -26,12 +26,20 @@ public abstract class AbstractChart {
 
     protected abstract MaterialDialog buildDialogSelectParams(Context context, Chart chart);
 
-    public Chart build(Context context, FragmentManager fragmentManager) {
+    public Chart build(Context context, FragmentManager fragmentManager) throws ChartException {
         this.fragmentManager = fragmentManager;
         Chart chart = buildChart(context);
-        buildDialogSelectParams(context, chart).show();
+        MaterialDialog dialog = buildDialogSelectParams(context, chart);
+        if (dialog != null) {
+            dialog.show();
+        } else {
+            putParams(chart);
+        }
         chart.setDescription(getDescription(context));
-        chart.setNoDataTextDescription(context.getString(R.string.exception_chart_no_data));
+        chart.setHardwareAccelerationEnabled(true);
+        chart.setDescriptionTextSize(13f);
+        chart.setNoDataText(context.getString(R.string.exception_chart_no_data));
+        chart.setHighlightEnabled(true);
         return chart;
     }
 

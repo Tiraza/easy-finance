@@ -48,4 +48,7 @@
     <string name="exception_chart_final_date_invalid">Final date invalid</string>
     <string name="exception_unable_delete_this_has_registries">Unable to delete, has registries that depends on this</string>
     <string name="exception_delete_entity">Have registries that depends on this type</string>
+    <string name="chart_expenses_by_type">Expenses Chart By Type</string>
+    <string name="chart_incomes_by_type">Income Chart By Type</string>
+    <string name="final_value">Total Value</string>
 </resources>

@@ -1,23 +1,28 @@
-package br.com.extractor.easyfinance.graph;
+package br.com.extractor.easyfinance.chart;
 
 import android.content.Context;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
-import com.github.mikephil.charting.charts.PieChart;
 
 import br.com.extractor.easyfinance.R;
 
-public class RelationIncomeExpenditure extends AbstractChart {
+public class ChartIncomesByType extends AbstractChart {
 
     @Override
     public String getDescription(Context context) {
-        return context.getString(R.string.chart_relation_income_expenditure);
+        return context.getString(R.string.chart_expenses_by_type);
     }
 
     @Override
     protected Chart buildChart(Context context) {
-        return new PieChart(context);
+        BarChart chart = new BarChart(context);
+        chart.setDrawBarShadow(true);
+        chart.setDrawValueAboveBar(true);
+        chart.setMaxVisibleValueCount(60);
+        chart.setPinchZoom(true);
+        return chart;
     }
 
     @Override

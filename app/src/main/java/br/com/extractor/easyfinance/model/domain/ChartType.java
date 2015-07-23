@@ -1,16 +1,20 @@
 package br.com.extractor.easyfinance.model.domain;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.graph.AbstractChart;
-import br.com.extractor.easyfinance.graph.ChartBalance;
-import br.com.extractor.easyfinance.graph.RelationIncomeExpenditure;
+import br.com.extractor.easyfinance.chart.AbstractChart;
+import br.com.extractor.easyfinance.chart.ChartBalance;
+import br.com.extractor.easyfinance.chart.ChartExpensesByType;
+import br.com.extractor.easyfinance.chart.ChartIncomesByType;
+import br.com.extractor.easyfinance.chart.ChartRelationIncomeExpenditure;
 import br.com.extractor.easyfinance.ui.EasyFinanceApplication;
 
 public enum ChartType {
 
     BALANCE(0, R.string.chart_balance, new ChartBalance()),
     RELATION_INCOME_EXPENDITURE(1, R.string.chart_relation_income_expenditure, new
-            RelationIncomeExpenditure());
+            ChartRelationIncomeExpenditure()),
+    EXPENSES(3, R.string.chart_expenses_by_type, new ChartExpensesByType()),
+    INCOMES(4, R.string.chart_incomes_by_type, new ChartIncomesByType());
 
     private int key;
     private int titleId;

@@ -46,4 +46,7 @@
     <string name="final_date">Data final</string>
     <string name="exception_chart_final_date_invalid">Data final inválida</string>
     <string name="exception_chart_initial_date_invalid">Data inicial inválida</string>
+    <string name="chart_expenses_by_type">Gráfico de gastos por tipo</string>
+    <string name="chart_incomes_by_type">Gráfico de receitas por tipo</string>
+    <string name="final_value">Valor Total</string>
 </resources>

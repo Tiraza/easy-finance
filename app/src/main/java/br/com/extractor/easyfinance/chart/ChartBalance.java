@@ -1,4 +1,4 @@
-package br.com.extractor.easyfinance.graph;
+package br.com.extractor.easyfinance.chart;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -42,7 +42,19 @@ public class ChartBalance extends AbstractChart implements DatePickerDialog.OnDa
 
     @Override
     protected Chart buildChart(Context context) {
-        return new LineChart(context);
+        LineChart chart = new LineChart(context);
+        chart.setDescription(getDescription(context));
+        chart.setHighlightEnabled(true);
+        chart.setTouchEnabled(true);
+        chart.setDragDecelerationFrictionCoef(0.9f);
+        chart.setDragEnabled(true);
+        chart.setScaleEnabled(true);
+        chart.setDrawGridBackground(false);
+        chart.setHighlightPerDragEnabled(true);
+        chart.setPinchZoom(true);
+        chart.animateX(2500);
+        chart.animateY(2500);
+        return chart;
     }
 
     @Override
@@ -114,8 +126,7 @@ public class ChartBalance extends AbstractChart implements DatePickerDialog.OnDa
             }
 
             boolean hasRegistries = (realm.where(Despesa.class).between("dataPaga", iDate, fDate)
-                    .count() + realm.where
-                    (Receita.class).between("dataPaga", iDate, fDate).count()) > 0;
+                    .count() + realm.where(Receita.class).between("dataPaga", iDate, fDate).count()) > 0;
 
             if (hasRegistries) {
 
@@ -126,6 +137,7 @@ public class ChartBalance extends AbstractChart implements DatePickerDialog.OnDa
 
                 List<Entry> valuesIncome = new ArrayList<>();
                 List<Entry> valuesExpenditure = new ArrayList<>();
+                List<Entry> valuesBalance = new ArrayList<>();
 
                 for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
                     Date dateToCompare = date.toDateTimeAtStartOfDay().toDate();
@@ -134,17 +146,21 @@ public class ChartBalance extends AbstractChart implements DatePickerDialog.OnDa
                     double income = realm.where(Receita.class).equalTo("dataPaga", dateToCompare).sumDouble("valorPago");
                     valuesIncome.add(new Entry((float) income, xIndex));
                     valuesExpenditure.add(new Entry((float) expenditure, xIndex));
+                    valuesBalance.add(new Entry((float) (income - expenditure), xIndex));
                     xIndex++;
                     xVals.add(SimpleDateFormat.getDateInstance().format(dateToCompare));
                 }
 
                 LineDataSet ldsIncome = buildLineDataSet(valuesIncome, chart.getContext().getString(R
-                        .string.incomes), Color.GREEN);
+                        .string.incomes), Color.BLUE);
                 LineDataSet ldsExpenditure = buildLineDataSet(valuesExpenditure, chart.getContext().getString(R
                         .string.expenses), Color.RED);
+                LineDataSet ldsBalance = buildLineDataSet(valuesBalance, chart.getContext()
+                        .getString(R.string.final_value), Color.GREEN);
 
                 sets.add(ldsIncome);
                 sets.add(ldsExpenditure);
+                sets.add(ldsBalance);
 
                 LineData lineData = new LineData(xVals, sets);
                 chart.setData(lineData);

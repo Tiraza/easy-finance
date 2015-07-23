@@ -9,8 +9,11 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.graph.AbstractChart;
+import br.com.extractor.easyfinance.chart.AbstractChart;
+import br.com.extractor.easyfinance.chart.ChartException;
 import br.com.extractor.easyfinance.model.domain.ChartType;
 import br.com.extractor.easyfinance.ui.FragmentCommunication;
 import br.com.extractor.easyfinance.ui.adapter.ChartTypeAdapter;
@@ -31,7 +34,6 @@ public class HomeFragment extends Fragment implements FragmentCommunication, Ada
         ButterKnife.bind(this, rootView);
 
         spnTypeChart.setAdapter(new ChartTypeAdapter(getActivity()));
-        spnTypeChart.setSelection(-1);
         spnTypeChart.setOnItemSelectedListener(this);
 
         return rootView;
@@ -49,11 +51,25 @@ public class HomeFragment extends Fragment implements FragmentCommunication, Ada
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long key) {
-        AbstractChart chart = ChartType.values()[position].getChart();
-        if (chartContainer.getChildCount() > 0) {
-            chartContainer.removeAllViews();
+        try {
+            AbstractChart chart = ChartType.values()[position].getChart();
+            if (chartContainer.getChildCount() > 0) {
+                chartContainer.removeAllViews();
+            }
+            chartContainer.addView(chart.build(getActivity(), getFragmentManager()));
+        } catch (ChartException e) {
+            new MaterialDialog.Builder(getActivity())
+                    .title(R.string.error)
+                    .content(e.getMessage())
+                    .neutralText(R.string.ok)
+                    .cancelable(false)
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onNeutral(MaterialDialog dialog) {
+                            dialog.dismiss();
+                        }
+                    }).show();
         }
-        chartContainer.addView(chart.build(getActivity(), getFragmentManager()));
     }
 
     @Override

@@ -9,8 +9,7 @@
         android:id="@+id/type_chart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:spinnerMode="dialog"/>
+        android:layout_margin="4dp"/>
 
     <FrameLayout
         android:id="@+id/chart_container"
