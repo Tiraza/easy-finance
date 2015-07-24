@@ -13,8 +13,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.chart.AbstractChart;
-import br.com.extractor.easyfinance.chart.ChartException;
-import br.com.extractor.easyfinance.model.domain.ChartType;
+import br.com.extractor.easyfinance.chart.PanelException;
+import br.com.extractor.easyfinance.model.domain.PanelType;
 import br.com.extractor.easyfinance.ui.FragmentCommunication;
 import br.com.extractor.easyfinance.ui.adapter.ChartTypeAdapter;
 import butterknife.Bind;
@@ -52,23 +52,20 @@ public class HomeFragment extends Fragment implements FragmentCommunication, Ada
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long key) {
         try {
-            AbstractChart chart = ChartType.values()[position].getChart();
+            AbstractChart chart = PanelType.values()[position].getChart();
             if (chartContainer.getChildCount() > 0) {
                 chartContainer.removeAllViews();
             }
-            chartContainer.addView(chart.build(getActivity(), getFragmentManager()));
-        } catch (ChartException e) {
+            if (chart != null) {
+                chartContainer.addView(chart.build(getActivity(), getFragmentManager()));
+            }
+        } catch (PanelException e) {
             new MaterialDialog.Builder(getActivity())
                     .title(R.string.error)
                     .content(e.getMessage())
                     .neutralText(R.string.ok)
                     .cancelable(false)
-                    .callback(new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onNeutral(MaterialDialog dialog) {
-                            dialog.dismiss();
-                        }
-                    }).show();
+                    .show();
         }
     }
 

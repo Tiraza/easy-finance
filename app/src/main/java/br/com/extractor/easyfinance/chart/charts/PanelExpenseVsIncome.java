@@ -1,9 +1,11 @@
-package br.com.extractor.easyfinance.chart;
+package br.com.extractor.easyfinance.chart.charts;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -17,19 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.extractor.easyfinance.R;
+import br.com.extractor.easyfinance.chart.Panel;
+import br.com.extractor.easyfinance.chart.PanelException;
 import br.com.extractor.easyfinance.model.Despesa;
 import br.com.extractor.easyfinance.model.Receita;
 import io.realm.Realm;
 
-public class ChartRelationIncomeExpenditure extends AbstractChart {
+public class PanelExpenseVsIncome implements Panel {
 
     @Override
-    public String getDescription(Context context) {
-        return context.getString(R.string.chart_relation_income_expenditure);
-    }
-
-    @Override
-    protected Chart buildChart(Context context) {
+    public View buildView(Context context, ViewGroup viewGroup, FragmentManager fragmentManager) {
         PieChart chart = new PieChart(context);
         chart.setUsePercentValues(true);
         chart.setDragDecelerationFrictionCoef(0.95f);
@@ -46,7 +45,25 @@ public class ChartRelationIncomeExpenditure extends AbstractChart {
     }
 
     @Override
-    protected void putParams(Chart chart) throws ChartException {
+    public String getDescription(Context context) {
+        return context.getString(R.string.panel_income_vs_expense);
+    }
+
+    @Override
+    public void obtainParamsAndProcess(Context context, View view) {
+        processParams(view);
+    }
+
+    @Override
+    public Object[] validateParams(View view, Object... params) throws PanelException {
+        return new Object[0];
+    }
+
+    @Override
+    public void processParams(View view, Object... params) {
+
+        Chart chart = (Chart) view;
+
         List<Entry> yVals1 = new ArrayList<>();
         ArrayList<String> xVals = new ArrayList<>();
 
@@ -92,19 +109,12 @@ public class ChartRelationIncomeExpenditure extends AbstractChart {
             data.setValueTextColor(Color.BLACK);
             chart.setData(data);
 
-            // undo all highlights
             chart.highlightValues(null);
 
             chart.invalidate();
         }
 
         realm.close();
-
-    }
-
-    @Override
-    protected MaterialDialog buildDialogSelectParams(Context context, Chart chart) {
-        return null;
     }
 
 }

@@ -32,8 +32,8 @@
     <string name="user_preferences">User Preferences</string>
     <string name="preference_dialog_username">Insert your username</string>
     <string name="thanks">Thanks</string>
-    <string name="chart_balance">Balance</string>
-    <string name="chart_relation_income_expenditure">Relation between income and expense</string>
+    <string name="panel_chart_balance">Balance</string>
+    <string name="panel_income_vs_expense">Income VS Expense</string>
     <string name="ok" translatable="false">OK</string>
     <string name="error">Error</string>
     <string name="initial_date">Initial Date</string>
@@ -51,5 +51,7 @@
     <string name="chart_expenses_by_type">Expenses Chart By Type</string>
     <string name="chart_incomes_by_type">Income Chart By Type</string>
     <string name="final_value">Total Value</string>
-    <string name="select_expense_type">Selecione os tipos de despesas</string>
+    <string name="none">None</string>
+    <string name="select_expense_type">Select expense type</string>
+    <string name="panel_simple">Simple Panel</string>
 </resources>

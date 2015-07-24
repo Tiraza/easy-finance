@@ -1,4 +1,4 @@
-package br.com.extractor.easyfinance.chart;
+package br.com.extractor.easyfinance.chart.charts;
 
 import android.content.Context;
 import android.view.View;
@@ -15,21 +15,22 @@ import java.util.List;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.ui.widget.CustomCheckBox;
+import br.com.extractor.easyfinance.chart.PanelException;
 import br.com.extractor.easyfinance.model.Tipo;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class ChartIncomesByType extends AbstractChart implements CompoundButton.OnCheckedChangeListener {
+public class ChartExpensesByType extends AbstractChart implements CompoundButton.OnCheckedChangeListener {
 
     private List<Long> typesSelected;
 
-    public ChartIncomesByType() {
+    public ChartExpensesByType() {
         typesSelected = new ArrayList<>();
     }
 
     @Override
     public String getDescription(Context context) {
-        return context.getString(R.string.chart_expenses_by_type);
+        return context.getString(R.string.chart_incomes_by_type);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class ChartIncomesByType extends AbstractChart implements CompoundButton.
     }
 
     @Override
-    protected void putParams(Chart chart) throws ChartException {
+    protected void putParams(Chart chart) throws PanelException {
 
     }
 
@@ -64,11 +65,10 @@ public class ChartIncomesByType extends AbstractChart implements CompoundButton.
                 try {
                     putParams(chart);
                     dialog.dismiss();
-                } catch (ChartException e) {
+                } catch (PanelException e) {
                     Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onNegative(MaterialDialog dialog) {
                 dialog.dismiss();
@@ -79,12 +79,12 @@ public class ChartIncomesByType extends AbstractChart implements CompoundButton.
         View customView = dialog.getView();
         ViewGroup viewGroup = (ViewGroup) customView.findViewById(R.id.choice_type_container);
 
-        RealmResults<Tipo> resultSet = realm.where(Tipo.class).notEqualTo("categoria", 0).findAll();
+        RealmResults<Tipo> resultSet = realm.where(Tipo.class).notEqualTo("categoria", 1).findAll();
 
         for (Tipo tipo : resultSet) {
             CustomCheckBox checkBox = new CustomCheckBox(context);
             checkBox.setText(tipo.getDescricao());
-            checkBox.setData(tipo);
+            checkBox.setData(tipo.getId());
             checkBox.setSelected(true);
             checkBox.setOnCheckedChangeListener(this);
             viewGroup.addView(checkBox);

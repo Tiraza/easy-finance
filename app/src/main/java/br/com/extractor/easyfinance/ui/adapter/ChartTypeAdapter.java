@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import br.com.extractor.easyfinance.model.domain.ChartType;
+import br.com.extractor.easyfinance.model.domain.PanelType;
 
-public class ChartTypeAdapter extends ArrayAdapter<ChartType> {
+public class ChartTypeAdapter extends ArrayAdapter<PanelType> {
 
     private final Context context;
 
     public ChartTypeAdapter(Context context) {
-        super(context, android.R.layout.simple_list_item_1, ChartType.values());
+        super(context, android.R.layout.simple_list_item_1, PanelType.values());
         this.context = context;
     }
 
@@ -31,9 +31,9 @@ public class ChartTypeAdapter extends ArrayAdapter<ChartType> {
         }
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
-        ChartType chartType = ChartType.values()[position];
+        PanelType panelType = PanelType.values()[position];
 
-        holder.text.setText(context.getString(chartType.getTitleId()));
+        holder.text.setText(context.getString(panelType.getTitleId()));
 
         return rowView;
     }
