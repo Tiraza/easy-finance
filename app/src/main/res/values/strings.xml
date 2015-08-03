@@ -54,7 +54,7 @@
     <string name="none">None</string>
     <string name="select_expense_type">Select expense type</string>
     <string name="panel_simple">Simple Panel</string>
-    <string name="tipo_despesa">Tipo de Despesa</string>
-    <string name="tipo_receita">Tipo de Receita</string>
-    <string name="pesquisar">Pesquisar</string>
+    <string name="spending_type">Spending Type</string>
+    <string name="amount_type">Amount Type</string>
+    <string name="search">Search</string>
 </resources>

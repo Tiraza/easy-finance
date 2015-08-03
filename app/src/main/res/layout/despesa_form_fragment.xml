@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/tipo_despesa"
+                android:text="@string/spending_type"
                 android:id="@+id/textView3" />
 
             <Spinner
