@@ -24,7 +24,7 @@ public class DespesasListAdapter extends RecyclerView.Adapter<DespesasListAdapte
     public DespesasListAdapter(View.OnClickListener itemClickEvent, View.OnLongClickListener itemLongClickEvent) {
         this.itemClickEvent = itemClickEvent;
         this.itemLongClickEvent = itemLongClickEvent;
-        this.listDespesas = Realm.getDefaultInstance().where(Despesa.class).findAll();
+        this.listDespesas = Realm.getDefaultInstance().where(Despesa.class).findAllSorted("dataPaga", false);
         this.numberFormat = NumberFormat.getCurrencyInstance();
     }
 

@@ -29,4 +29,7 @@
     <string name="revenue_date">Revenue date</string>
     <string name="developers">Developers</string>
     <string name="libraries">Libraries</string>
+    <string name="tipo_despesa">Tipo de Despesa</string>
+    <string name="tipo_receita">Tipo de Receita</string>
+    <string name="pesquisar">Pesquisar</string>
 </resources>

@@ -24,7 +24,7 @@ public class ReceitasListAdapter extends RecyclerView.Adapter<ReceitasListAdapte
     public ReceitasListAdapter(View.OnClickListener itemClickEvent, View.OnLongClickListener itemLongClickEvent) {
         this.itemClickEvent = itemClickEvent;
         this.itemLongClickEvent = itemLongClickEvent;
-        this.listReceitas = Realm.getDefaultInstance().where(Receita.class).findAll();
+        this.listReceitas = Realm.getDefaultInstance().where(Receita.class).findAllSorted("dataPaga", false);
         this.numberFormat = NumberFormat.getCurrencyInstance();
     }
 
