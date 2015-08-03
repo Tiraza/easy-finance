@@ -129,10 +129,13 @@ public abstract class ListEntityFragment extends Fragment
 
         boolean hasRegistries = false;
 
+        String entityName = formEntityFragment.getEntityClass().getSimpleName();
+        String foreignKey = entityName.toLowerCase() + ".id";
+
         for (RealmObject realmObject : listEntitys) {
             for (Class<? extends RealmObject> dependencyClass : getDependencies()) {
                 Entidade entidade = (Entidade) realmObject;
-                int quantity = realm.where(dependencyClass).equalTo("tipo.id", entidade.getId())
+                int quantity = realm.where(dependencyClass).equalTo(foreignKey, entidade.getId())
                         .findAll().size();
                 if (quantity > 0) {
                     hasRegistries = true;
@@ -143,9 +146,9 @@ public abstract class ListEntityFragment extends Fragment
         if (hasRegistries) {
 
             new MaterialDialog.Builder(getActivity())
-                    .title("Erro")
-                    .content("Existem registros que utilizam um tipo informado para exclusão")
-                    .neutralText("OK")
+                    .title(R.string.error)
+                    .content(R.string.exception_unable_delete_this_has_registries)
+                    .neutralText(R.string.ok)
                     .cancelable(false)
                     .callback(new MaterialDialog.ButtonCallback() {
                         @Override

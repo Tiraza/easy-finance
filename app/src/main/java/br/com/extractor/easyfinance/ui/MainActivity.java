@@ -14,9 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.google.android.gms.analytics.Tracker;
 
 import br.com.extractor.easyfinance.R;
 import br.com.extractor.easyfinance.arquitetura.Fragmento;
+import br.com.extractor.easyfinance.arquitetura.preference.Preferences;
 import br.com.extractor.easyfinance.ui.configuracoes.ConfiguracoesFragment;
 import br.com.extractor.easyfinance.ui.despesa.DespesaListFragment;
 import br.com.extractor.easyfinance.ui.home.HomeFragment;
@@ -26,7 +30,7 @@ import br.com.extractor.easyfinance.ui.tipo.TipoListFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ActivityCommunication {
 
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -37,11 +41,15 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
+    @Bind(R.id.txt_username)
+    TextView txtUsername;
+
     private ActionBarDrawerToggle drawerToggle;
     private SparseArray<Fragmento> mapFragmento;
     private FragmentManager fragmentManager;
     private ActionBar actionBar;
     private FragmentCommunication fragmentCommunication;
+    private Tracker tracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         setupToolbar();
         setupDrawerContent();
         changeFragment(R.id.menu_dashboard);
+        tracker = EasyFinanceApplication.defaultTracker;
+        updateValues();
     }
 
     @Override
@@ -147,6 +157,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public void updateValues() {
+        txtUsername.setText(Preferences.getString(Preferences.USERNAME, R.string.username));
     }
 
 }

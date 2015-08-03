@@ -5,50 +5,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.Spinner;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.model.Despesa;
-import br.com.extractor.easyfinance.model.Receita;
+import br.com.extractor.easyfinance.chart.AbstractChart;
+import br.com.extractor.easyfinance.chart.PanelException;
+import br.com.extractor.easyfinance.model.domain.PanelType;
 import br.com.extractor.easyfinance.ui.FragmentCommunication;
+import br.com.extractor.easyfinance.ui.adapter.ChartTypeAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import io.realm.Realm;
-import lecho.lib.hellocharts.model.PieChartData;
-import lecho.lib.hellocharts.model.SliceValue;
-import lecho.lib.hellocharts.view.PieChartView;
 
-public class HomeFragment extends Fragment implements FragmentCommunication {
+public class HomeFragment extends Fragment implements FragmentCommunication, AdapterView.OnItemSelectedListener {
 
-    @Bind(R.id.pie_chart_view)
-    PieChartView pieChartView;
+    @Bind(R.id.chart_container)
+    FrameLayout chartContainer;
+
+    @Bind(R.id.type_chart)
+    Spinner spnTypeChart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.home_fragment, container, false);
         ButterKnife.bind(this, rootView);
 
-        List<SliceValue> pieValues = new ArrayList<>();
-
-        double valorTotalDespesas = Realm.getDefaultInstance().where(Despesa.class).sumDouble("valorPago");
-        SliceValue valueDespesas = new SliceValue((float) valorTotalDespesas, getResources().getColor(R.color.gr_despesas));
-        valueDespesas.setLabel(getString(R.string.expenses));
-        pieValues.add(valueDespesas);
-
-        double valorTotalReceitas = Realm.getDefaultInstance().where(Receita.class).sumDouble("valorPago");
-        SliceValue valueReceitas = new SliceValue((float) valorTotalReceitas, getResources().getColor(R.color.gr_receitas));
-        valueReceitas.setLabel(getString(R.string.incomes));
-        pieValues.add(valueReceitas);
-
-        PieChartData pieData = new PieChartData(pieValues);
-        pieData.setHasLabels(true);
-        pieData.setHasLabelsOnlyForSelected(false);
-        pieData.setHasLabelsOutside(false);
-        pieData.setHasCenterCircle(true);
-
-        pieChartView.setPieChartData(pieData);
+        spnTypeChart.setAdapter(new ChartTypeAdapter(getActivity()));
+        spnTypeChart.setOnItemSelectedListener(this);
 
         return rootView;
     }
@@ -60,6 +46,31 @@ public class HomeFragment extends Fragment implements FragmentCommunication {
 
     @Override
     public void freePendencies() {
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long key) {
+        try {
+            AbstractChart chart = PanelType.values()[position].getChart();
+            if (chartContainer.getChildCount() > 0) {
+                chartContainer.removeAllViews();
+            }
+            if (chart != null) {
+                chartContainer.addView(chart.build(getActivity(), getFragmentManager()));
+            }
+        } catch (PanelException e) {
+            new MaterialDialog.Builder(getActivity())
+                    .title(R.string.error)
+                    .content(e.getMessage())
+                    .neutralText(R.string.ok)
+                    .cancelable(false)
+                    .show();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 

@@ -40,14 +40,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@android:color/white"
-        android:weightSum="1">
+        android:weightSum="2">
 
         <Button
             android:id="@+id/btn_libraries"
             style="@style/FlatButton"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="1"
             android:text="@string/libraries"/>
 
         <Button
@@ -55,7 +55,7 @@
             style="@style/FlatButton"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="1"
             android:text="@string/developers"/>
 
     </LinearLayout>
