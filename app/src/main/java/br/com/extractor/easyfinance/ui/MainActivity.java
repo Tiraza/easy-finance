@@ -91,8 +91,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         actionBar = getSupportActionBar();
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_drawer_open, R
-                .string.nav_drawer_close);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_drawer_open, R.string.nav_drawer_close);
         drawerLayout.setDrawerListener(drawerToggle);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -102,14 +101,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCommunica
         if (mapFragmento == null) {
             mapFragmento = new SparseArray<>();
             mapFragmento.put(R.id.menu_dashboard, new Fragmento(new HomeFragment(), R.string.dashboard));
-            mapFragmento.put(R.id.menu_receitas, new Fragmento(new ReceitaListFragment(), R.string
-                    .incomes));
-            mapFragmento.put(R.id.menu_despesas, new Fragmento(new DespesaListFragment(), R.string
-                    .expenses));
-            mapFragmento.put(R.id.menu_tipo, new Fragmento(new TipoListFragment(), R.string
-                    .type));
-            mapFragmento.put(R.id.menu_configuracoes, new Fragmento(new ConfiguracoesFragment(),
-                    R.string.settings));
+            mapFragmento.put(R.id.menu_receitas, new Fragmento(new ReceitaListFragment(), R.string.incomes));
+            mapFragmento.put(R.id.menu_despesas, new Fragmento(new DespesaListFragment(), R.string.expenses));
+            mapFragmento.put(R.id.menu_tipo, new Fragmento(new TipoListFragment(), R.string.type));
+            mapFragmento.put(R.id.menu_configuracoes, new Fragmento(new ConfiguracoesFragment(), R.string.settings));
             mapFragmento.put(R.id.menu_sobre, new Fragmento(new SobreFragment(), R.string.about));
         }
     }

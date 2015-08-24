@@ -90,10 +90,8 @@ public abstract class ListEntityFragment extends Fragment
     @Override
     public void onResume() {
         super.onResume();
-        addToDelete = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R
-                .animator.add_to_delete);
-        deleteToAdd = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R
-                .animator.delete_to_add);
+        addToDelete = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.add_to_delete);
+        deleteToAdd = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.delete_to_add);
         viewCreateDeleteEntities = ButterKnife.findById(getActivity(), getViewCreateEntity());
         viewCreateDeleteEntities.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,9 +12,10 @@
     </style>
 
     <style name="FloatActionButton" parent="AppTheme">
-        <item name="elevation">@dimen/fab_elevation</item>
         <item name="borderWidth">@dimen/fab_border_width</item>
         <item name="pressedTranslationZ">@dimen/fab_translation_z_pressed</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
     </style>
 
     <style name="FlatButton" parent="Widget.AppCompat.Button.Borderless">

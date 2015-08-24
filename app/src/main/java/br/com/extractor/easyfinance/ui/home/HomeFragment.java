@@ -12,8 +12,8 @@ import android.widget.Spinner;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import br.com.extractor.easyfinance.R;
-import br.com.extractor.easyfinance.chart.AbstractChart;
 import br.com.extractor.easyfinance.chart.PanelException;
+import br.com.extractor.easyfinance.chart.charts.ChartExpensesByType;
 import br.com.extractor.easyfinance.model.domain.PanelType;
 import br.com.extractor.easyfinance.ui.FragmentCommunication;
 import br.com.extractor.easyfinance.ui.adapter.ChartTypeAdapter;
@@ -45,14 +45,12 @@ public class HomeFragment extends Fragment implements FragmentCommunication, Ada
     }
 
     @Override
-    public void freePendencies() {
-
-    }
+    public void freePendencies() {}
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long key) {
-        try {
-            AbstractChart chart = PanelType.values()[position].getChart();
+        /*try {
+            ChartExpensesByType chart = PanelType.values()[position].getChart();
             if (chartContainer.getChildCount() > 0) {
                 chartContainer.removeAllViews();
             }
@@ -66,7 +64,7 @@ public class HomeFragment extends Fragment implements FragmentCommunication, Ada
                     .neutralText(R.string.ok)
                     .cancelable(false)
                     .show();
-        }
+        }*/
     }
 
     @Override

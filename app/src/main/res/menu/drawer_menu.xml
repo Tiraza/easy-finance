@@ -16,6 +16,7 @@
             android:title="@string/expenses"/>
         <item
             android:id="@+id/menu_tipo"
+            android:icon="@drawable/ic_tipo"
             android:title="@string/type"/>
     </group>
 

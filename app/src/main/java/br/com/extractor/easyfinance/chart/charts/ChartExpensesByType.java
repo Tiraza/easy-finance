@@ -20,7 +20,7 @@ import br.com.extractor.easyfinance.model.Tipo;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class ChartExpensesByType extends AbstractChart implements CompoundButton.OnCheckedChangeListener {
+public class ChartExpensesByType implements CompoundButton.OnCheckedChangeListener {
 
     private List<Long> typesSelected;
 
@@ -28,12 +28,10 @@ public class ChartExpensesByType extends AbstractChart implements CompoundButton
         typesSelected = new ArrayList<>();
     }
 
-    @Override
     public String getDescription(Context context) {
         return context.getString(R.string.chart_incomes_by_type);
     }
 
-    @Override
     protected Chart buildChart(Context context) {
         BarChart chart = new BarChart(context);
         chart.setDrawBarShadow(true);
@@ -43,12 +41,10 @@ public class ChartExpensesByType extends AbstractChart implements CompoundButton
         return chart;
     }
 
-    @Override
     protected void putParams(Chart chart) throws PanelException {
 
     }
 
-    @Override
     protected MaterialDialog buildDialogSelectParams(final Context context, final Chart chart) {
         Realm realm = Realm.getDefaultInstance();
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context);

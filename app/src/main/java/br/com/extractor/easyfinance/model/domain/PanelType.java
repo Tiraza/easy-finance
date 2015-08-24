@@ -14,7 +14,7 @@ public enum PanelType {
     SIMPLE(-1, R.string.none, new PanelSimple()),
     BALANCE(0, R.string.panel_chart_balance, new PanelChartBalance()),
     RELATION_INCOME_EXPENDITURE(1, R.string.panel_income_vs_expense, new PanelExpenseVsIncome()),
-    EXPENSES(3, R.string.chart_expenses_by_type, new ChartExpensesByType()),
+    //EXPENSES(3, R.string.chart_expenses_by_type, new ChartExpensesByType()),
     INCOMES(4, R.string.chart_incomes_by_type, new ChartIncomesByType());
 
     private int key;
